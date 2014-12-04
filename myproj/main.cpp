@@ -259,7 +259,7 @@ void init()
 	obj1->computeSphereTextureCoordinates();
 	obj1->computeTangents();
 	obj1->createObjectBuffers();
-	obj1->scale(0.0125, 0.0125, 0.0125);
+	obj1->scale(0.006, 0.006, 0.006);
 	obj1->texture.readTexture("br-diffuse.ppm");
 	obj1->bump.readTexture("br-normal.ppm");
 
@@ -270,8 +270,17 @@ void init()
 	obj2->computeTangents();
 	obj2->createObjectBuffers();
 	obj2->texture.readTexture("texture.ppm");
+	obj2->translate(12, 0, -5);
+
+	/*obj2 = new myObject3D();
+	obj2->readMesh("meuble.obj");
+	obj2->computeNormals();
+	obj2->computeSphereTextureCoordinates();
+	obj2->computeTangents();
+	obj2->createObjectBuffers();
+	obj2->texture.readTexture("texture.ppm");
 	obj2->scale(2, 6, 3);
-	obj2->translate(25, 0, -10);
+	obj2->translate(25, 0, -10);*/
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
