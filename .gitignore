@@ -1,0 +1,3 @@
+*.exe
+*.idb
+myproj\Debug\*
