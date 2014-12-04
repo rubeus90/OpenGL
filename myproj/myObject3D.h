@@ -159,8 +159,7 @@ public:
 		{
 			x = vertices[3 * i]; y = vertices[3 * i + 1]; z = vertices[3 * i + 2];
 
-			textures[2 * i + 1] = x,
-			//textures[2 * i] = acos(z / sqrt(x*x + y*y + z*z)) / (PI);
+			textures[2 * i + 1] = x;
 			textures[2 * i] = y;
 		}
 	}
@@ -188,7 +187,7 @@ public:
 
 	void displayObject(GLuint shaderprogram, glm::mat4 viewmatrix)
 	{
-		model_matrix = glm::mat4(1.0f);
+		//model_matrix = glm::mat4(1.0f);
 		glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mymodel_matrix"), 1, GL_FALSE, &model_matrix[0][0]);
 
 		glm::mat3 normal_matrix = glm::transpose(glm::inverse(glm::mat3(viewmatrix*model_matrix)));

@@ -269,7 +269,8 @@ void init()
 	obj2->computeTangents();
 	obj2->createObjectBuffers();
 	obj2->texture.readTexture("texture.ppm");
-	obj2->translate(2, 6, 3);
+	obj2->scale(2, 6, 3);
+	obj2->translate(2, 2, 2);
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
