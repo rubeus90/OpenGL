@@ -206,7 +206,7 @@ void display()
 	//Draw object
 	glUniform1i(renderStyle_loc, 2);
 	obj1->displayObject(shaderprogram1, view_matrix);
-	//obj2->displayObject(shaderprogram1, view_matrix);
+	obj2->displayObject(shaderprogram1, view_matrix);
 
 	//Draw the light
 	glUniform1i(renderStyle_loc, 4);
@@ -254,22 +254,22 @@ void init()
 	mylight_type_loc = glGetUniformLocation(shaderprogram1, "mylight_type");
 
 	obj1 = new myObject3D();
-	obj1->readMesh("meuble.obj");
+	obj1->readMesh("sphere.obj");
 	obj1->computeNormals();
-	//obj1->computeSphereTextureCoordinates();
-	obj1->computeCylinderTextureCoordinates();
+	obj1->computeSphereTextureCoordinates();
 	obj1->computeTangents();
 	obj1->createObjectBuffers();
 	obj1->texture.readTexture("br-diffuse.ppm");
 	obj1->bump.readTexture("br-normal.ppm");
 
-	/*obj2 = new myObject3D();
-	obj2->readMesh("sphere.obj");
+	obj2 = new myObject3D();
+	obj2->readMesh("apple.obj");
 	obj2->computeNormals();
 	obj2->computeSphereTextureCoordinates();
+	obj2->computeTangents();
 	obj2->createObjectBuffers();
 	obj2->texture.readTexture("texture.ppm");
-	obj2->translate(1, 1, 1);*/
+	obj2->translate(2, 6, 3);
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
