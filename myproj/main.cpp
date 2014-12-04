@@ -51,7 +51,7 @@ vector<GLfloat> vertices;
 vector<GLfloat> normals;
 vector<GLuint> indices;
 
-myObject3D *obj1, *obj2;
+myObject3D *obj1, *obj2, *obj3;
 
 //This function is called when a mouse button is pressed.
 void mouse(int button, int state, int x, int y)
@@ -207,6 +207,7 @@ void display()
 	glUniform1i(renderStyle_loc, 2);
 	obj1->displayObject(shaderprogram1, view_matrix);
 	obj2->displayObject(shaderprogram1, view_matrix);
+	obj3->displayObject(shaderprogram1, view_matrix);
 
 	//Draw the light
 	glUniform1i(renderStyle_loc, 4);
@@ -272,15 +273,16 @@ void init()
 	obj2->texture.readTexture("texture.ppm");
 	obj2->translate(12, 0, -5);
 
-	/*obj2 = new myObject3D();
-	obj2->readMesh("meuble.obj");
-	obj2->computeNormals();
-	obj2->computeSphereTextureCoordinates();
-	obj2->computeTangents();
-	obj2->createObjectBuffers();
-	obj2->texture.readTexture("texture.ppm");
-	obj2->scale(2, 6, 3);
-	obj2->translate(25, 0, -10);*/
+	obj3 = new myObject3D();
+	obj3->readMesh("canape.obj");
+	obj3->computeNormals();
+	obj3->computeSphereTextureCoordinates();
+	obj3->computeTangents();
+	obj3->createObjectBuffers();
+	obj3->texture.readTexture("texture.ppm");
+	obj3->scale(0.007,0.007,0.007);
+	obj3->rotate(0, 1, 0, 270);
+	obj3->translate(20, 0, 10);
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
