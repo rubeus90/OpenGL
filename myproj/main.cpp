@@ -254,7 +254,7 @@ void init()
 	mylight_type_loc = glGetUniformLocation(shaderprogram1, "mylight_type");
 
 	obj1 = new myObject3D();
-	obj1->readMesh("table_chaise.obj");
+	obj1->readMesh("meuble.obj");
 	obj1->computeNormals();
 	//obj1->computeSphereTextureCoordinates();
 	obj1->computeCylinderTextureCoordinates();
