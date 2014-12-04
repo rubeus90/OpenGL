@@ -254,23 +254,24 @@ void init()
 	mylight_type_loc = glGetUniformLocation(shaderprogram1, "mylight_type");
 
 	obj1 = new myObject3D();
-	obj1->readMesh("sphere.obj");
+	obj1->readMesh("bed.obj");
 	obj1->computeNormals();
 	obj1->computeSphereTextureCoordinates();
 	obj1->computeTangents();
 	obj1->createObjectBuffers();
+	obj1->scale(0.0125, 0.0125, 0.0125);
 	obj1->texture.readTexture("br-diffuse.ppm");
 	obj1->bump.readTexture("br-normal.ppm");
 
 	obj2 = new myObject3D();
-	obj2->readMesh("apple.obj");
+	obj2->readMesh("meuble.obj");
 	obj2->computeNormals();
 	obj2->computeSphereTextureCoordinates();
 	obj2->computeTangents();
 	obj2->createObjectBuffers();
 	obj2->texture.readTexture("texture.ppm");
 	obj2->scale(2, 6, 3);
-	obj2->translate(2, 2, 2);
+	obj2->translate(25, 0, -10);
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
