@@ -51,7 +51,7 @@ vector<GLfloat> vertices;
 vector<GLfloat> normals;
 vector<GLuint> indices;
 
-myObject3D *obj1, *obj2, *obj3, *obj4, *obj5;
+myObject3D *obj1, *obj2, *obj3, *obj4, *obj5, *obj6;
 
 //This function is called when a mouse button is pressed.
 void mouse(int button, int state, int x, int y)
@@ -210,6 +210,7 @@ void display()
 	obj3->displayObject(shaderprogram1, view_matrix);
 	obj4->displayObject(shaderprogram1, view_matrix);
 	obj5->displayObject(shaderprogram1, view_matrix);
+	obj6->displayObject(shaderprogram1, view_matrix);
 
 	//Draw the light
 	glUniform1i(renderStyle_loc, 4);
@@ -307,6 +308,18 @@ void init()
 	obj5->bump.readTexture("br-normal.ppm");
 	obj5->rotate(1,0, 0, 270);
 	obj5->translate(0, 0, 30);
+
+	obj6 = new myObject3D();
+	obj6->readMesh("sol.obj");
+	obj6->scale(4, 4, 4);
+	obj6->computeNormals();
+	obj6->computePlaneTextureCoordinates();
+	obj6->computeTangents();
+	obj6->createObjectBuffers();
+	obj6->texture.readTexture("floor.ppm");
+	obj6->bump.readTexture("br-normal.ppm");
+	
+	obj6->rotate(1, 0, 0, 90);
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
