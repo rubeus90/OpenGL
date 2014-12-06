@@ -51,7 +51,7 @@ vector<GLfloat> vertices;
 vector<GLfloat> normals;
 vector<GLuint> indices;
 
-myObject3D *obj1, *obj2, *obj3;
+myObject3D *obj1, *obj2, *obj3, *obj4, *obj5;
 
 //This function is called when a mouse button is pressed.
 void mouse(int button, int state, int x, int y)
@@ -208,6 +208,8 @@ void display()
 	obj1->displayObject(shaderprogram1, view_matrix);
 	obj2->displayObject(shaderprogram1, view_matrix);
 	obj3->displayObject(shaderprogram1, view_matrix);
+	obj4->displayObject(shaderprogram1, view_matrix);
+	obj5->displayObject(shaderprogram1, view_matrix);
 
 	//Draw the light
 	glUniform1i(renderStyle_loc, 4);
@@ -260,7 +262,6 @@ void init()
 	obj1->computeSphereTextureCoordinates();
 	obj1->computeTangents();
 	obj1->createObjectBuffers();
-	//obj1->scale(0.006, 0.006, 0.006);
 	obj1->texture.readTexture("br-diffuse.ppm");
 	obj1->bump.readTexture("br-normal.ppm");
 
@@ -282,9 +283,30 @@ void init()
 	obj3->createObjectBuffers();
 	obj3->texture.readTexture("br-diffuse.ppm");
 	obj3->bump.readTexture("br-normal.ppm");
-	//obj3->scale(0.007,0.007,0.007);
 	obj3->rotate(0, 1, 0, 270);
 	obj3->translate(30, 0, 10);
+
+	obj4 = new myObject3D();
+	obj4->readMesh("desk.obj");
+	obj4->computeNormals();
+	obj4->computeSphereTextureCoordinates();
+	obj4->computeTangents();
+	obj4->createObjectBuffers();
+	obj4->texture.readTexture("br-diffuse.ppm");
+	obj4->bump.readTexture("br-normal.ppm");
+	obj4->rotate(0, 1, 0,90);
+	obj4->translate(-20, 0, 10);
+
+	obj5 = new myObject3D();
+	obj5->readMesh("table.obj");
+	obj5->computeNormals();
+	obj5->computeSphereTextureCoordinates();
+	obj5->computeTangents();
+	obj5->createObjectBuffers();
+	obj5->texture.readTexture("br-diffuse.ppm");
+	obj5->bump.readTexture("br-normal.ppm");
+	obj5->rotate(1,0, 0, 270);
+	obj5->translate(0, 0, 30);
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
