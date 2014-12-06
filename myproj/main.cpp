@@ -260,7 +260,7 @@ void init()
 	obj1->computeSphereTextureCoordinates();
 	obj1->computeTangents();
 	obj1->createObjectBuffers();
-	obj1->scale(0.006, 0.006, 0.006);
+	//obj1->scale(0.006, 0.006, 0.006);
 	obj1->texture.readTexture("br-diffuse.ppm");
 	obj1->bump.readTexture("br-normal.ppm");
 
@@ -270,8 +270,9 @@ void init()
 	obj2->computeSphereTextureCoordinates();
 	obj2->computeTangents();
 	obj2->createObjectBuffers();
-	obj2->texture.readTexture("texture.ppm");
-	obj2->translate(12, 0, -5);
+	obj2->texture.readTexture("br-diffuse.ppm");
+	obj2->bump.readTexture("br-normal.ppm");
+	obj2->translate(20, 0, -5);
 
 	obj3 = new myObject3D();
 	obj3->readMesh("canape.obj");
@@ -279,10 +280,11 @@ void init()
 	obj3->computeSphereTextureCoordinates();
 	obj3->computeTangents();
 	obj3->createObjectBuffers();
-	obj3->texture.readTexture("texture.ppm");
-	obj3->scale(0.007,0.007,0.007);
+	obj3->texture.readTexture("br-diffuse.ppm");
+	obj3->bump.readTexture("br-normal.ppm");
+	//obj3->scale(0.007,0.007,0.007);
 	obj3->rotate(0, 1, 0, 270);
-	obj3->translate(20, 0, 10);
+	obj3->translate(30, 0, 10);
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
