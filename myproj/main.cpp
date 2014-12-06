@@ -271,7 +271,7 @@ void init()
 	obj2->computeSphereTextureCoordinates();
 	obj2->computeTangents();
 	obj2->createObjectBuffers();
-	obj2->texture.readTexture("br-diffuse.ppm");
+	obj2->texture.readTexture("meuble.ppm");
 	obj2->bump.readTexture("br-normal.ppm");
 	obj2->translate(20, 0, -5);
 
@@ -281,7 +281,7 @@ void init()
 	obj3->computeSphereTextureCoordinates();
 	obj3->computeTangents();
 	obj3->createObjectBuffers();
-	obj3->texture.readTexture("br-diffuse.ppm");
+	obj3->texture.readTexture("canape.ppm");
 	obj3->bump.readTexture("br-normal.ppm");
 	obj3->rotate(0, 1, 0, 270);
 	obj3->translate(30, 0, 10);
@@ -292,7 +292,7 @@ void init()
 	obj4->computeSphereTextureCoordinates();
 	obj4->computeTangents();
 	obj4->createObjectBuffers();
-	obj4->texture.readTexture("br-diffuse.ppm");
+	obj4->texture.readTexture("table.ppm");
 	obj4->bump.readTexture("br-normal.ppm");
 	obj4->rotate(0, 1, 0,90);
 	obj4->translate(-20, 0, 10);
@@ -303,7 +303,7 @@ void init()
 	obj5->computeSphereTextureCoordinates();
 	obj5->computeTangents();
 	obj5->createObjectBuffers();
-	obj5->texture.readTexture("br-diffuse.ppm");
+	obj5->texture.readTexture("table.ppm");
 	obj5->bump.readTexture("br-normal.ppm");
 	obj5->rotate(1,0, 0, 270);
 	obj5->translate(0, 0, 30);
