@@ -51,7 +51,7 @@ vector<GLfloat> vertices;
 vector<GLfloat> normals;
 vector<GLuint> indices;
 
-myObject3D *obj1, *obj2, *obj3, *obj4, *obj5, *obj6, *obj7,*obj8, *obj9, *obj10, *obj11, *obj12,*obj13;
+myObject3D *obj1, *obj2, *obj3, *obj4, *obj5, *obj6, *obj7,*obj8, *obj9, *obj10, *obj11, *obj12,*obj13,*obj14;
 
 //This function is called when a mouse button is pressed.
 void mouse(int button, int state, int x, int y)
@@ -218,6 +218,7 @@ void display()
 	obj11->displayObject(shaderprogram1, view_matrix);
 	obj12->displayObject(shaderprogram1, view_matrix);
 	obj13->displayObject(shaderprogram1, view_matrix);
+	obj14->displayObject(shaderprogram1, view_matrix);
 	
 	//Draw the light
 	glUniform1i(renderStyle_loc, 4);
@@ -418,6 +419,18 @@ void init()
 	obj13->texture.readTexture("etagere.ppm");
 	obj13->bump.readTexture("etagereNormal.ppm");
 	obj13->translate(-15, 0, 43);
+
+	// Etagere deco
+	obj14 = new myObject3D();
+	obj14->readMesh("deco.obj");
+	obj14->computeNormals();
+	obj14->computePlaneTextureCoordinates();
+	obj14->computeTangents();
+	obj14->createObjectBuffers();
+	obj14->texture.readTexture("etagere.ppm");
+	obj14->bump.readTexture("etagereNormal.ppm");
+	obj14->rotate(0, 1, 0, 180);
+	obj14->translate(79, -4, 5);
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
