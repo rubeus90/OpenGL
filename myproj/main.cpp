@@ -51,7 +51,7 @@ vector<GLfloat> vertices;
 vector<GLfloat> normals;
 vector<GLuint> indices;
 
-myObject3D *obj1, *obj2, *obj3, *obj4, *obj5, *obj6, *obj7,*obj8;
+myObject3D *obj1, *obj2, *obj3, *obj4, *obj5, *obj6, *obj7,*obj8, *obj9, *obj10, *obj11, *obj12;
 
 //This function is called when a mouse button is pressed.
 void mouse(int button, int state, int x, int y)
@@ -213,6 +213,10 @@ void display()
 	obj6->displayObject(shaderprogram1, view_matrix);
 	obj7->displayObject(shaderprogram1, view_matrix);
 	obj8->displayObject(shaderprogram1, view_matrix);
+	obj9->displayObject(shaderprogram1, view_matrix);
+	obj10->displayObject(shaderprogram1, view_matrix);
+	obj11->displayObject(shaderprogram1, view_matrix);
+	obj12->displayObject(shaderprogram1, view_matrix);
 	
 	//Draw the light
 	glUniform1i(renderStyle_loc, 4);
@@ -258,7 +262,7 @@ void init()
 	mylight_color_loc = glGetUniformLocation(shaderprogram1, "mylight_color");
 	mylight_direction_loc = glGetUniformLocation(shaderprogram1, "mylight_direction");
 	mylight_type_loc = glGetUniformLocation(shaderprogram1, "mylight_type");
-
+	// Lit
 	obj1 = new myObject3D();
 	obj1->readMesh("bed.obj");
 	obj1->computeNormals();
@@ -268,6 +272,7 @@ void init()
 	obj1->texture.readTexture("br-diffuse.ppm");
 	obj1->bump.readTexture("br-normal.ppm");
 
+	// Commode
 	obj2 = new myObject3D();
 	obj2->readMesh("meuble.obj");
 	obj2->computeNormals();
@@ -279,6 +284,7 @@ void init()
 	obj2->rotate(0, 1, 0, 270);
 	obj2->translate(20, 0, 0);
 
+	// Canape
 	obj3 = new myObject3D();
 	obj3->readMesh("canape.obj");
 	obj3->computeNormals();
@@ -290,6 +296,7 @@ void init()
 	obj3->rotate(0, 1, 0, 90);
 	obj3->translate(32, 0, 0);
 
+	// Bureau
 	obj4 = new myObject3D();
 	obj4->readMesh("desk.obj");
 	obj4->computeNormals();
@@ -301,6 +308,7 @@ void init()
 	obj4->rotate(0, 1, 0,180);
 	obj4->translate(60, 0, 30);
 
+	// Table
 	obj5 = new myObject3D();
 	obj5->readMesh("table.obj");
 	obj5->computeNormals();
@@ -313,6 +321,7 @@ void init()
 	obj5->rotate(0, 1, 0, 90);
 	obj5->translate(45, 0, 0);
 
+	// Sol Chambre
 	obj6 = new myObject3D();
 	obj6->readMesh("sol.obj");
 	obj6->scale(2.5, 3, 1);
@@ -325,6 +334,7 @@ void init()
 	obj6->rotate(1, 0, 0, 90);
 	obj6->translate(0, 0, 15); //(y,z,x)
 
+	// Sol salon
 	obj7 = new myObject3D();
 	obj7->readMesh("sol.obj");
 	obj7->scale(2.5, 3, 1);
@@ -337,7 +347,7 @@ void init()
 	obj7->rotate(1, 0, 0, 90);
 	obj7->translate(50, 0, 15); //(x,z,y)
 
-
+	// Murs séparateur
 	obj8 = new myObject3D();
 	obj8->readMesh("sol.obj");
 	obj8->scale(2, 1, 1);
@@ -348,7 +358,54 @@ void init()
 	obj8->texture.readTexture("tableppm");
 	obj8->bump.readTexture("br-normal.ppm");
 	obj8->rotate(0, 1, 0, 90);
-	obj8->translate(25, 10, 5); //(x,z,y)
+	obj8->translate(25, 10, 5);
+
+	// 4 murs autours
+	obj9 = new myObject3D();
+	obj9->readMesh("sol.obj");
+	obj9->scale(3, 1, 1);
+	obj9->computeNormals();
+	obj9->computePlaneTextureCoordinates();
+	obj9->computeTangents();
+	obj9->createObjectBuffers();
+	obj9->texture.readTexture("tableppm");
+	obj9->bump.readTexture("br-normal.ppm");
+	obj9->rotate(0, 1, 0, 90);
+	obj9->translate(75, 10, 15);
+
+	obj10 = new myObject3D();
+	obj10->readMesh("sol.obj");
+	obj10->scale(3, 1, 1);
+	obj10->computeNormals();
+	obj10->computePlaneTextureCoordinates();
+	obj10->computeTangents();
+	obj10->createObjectBuffers();
+	obj10->texture.readTexture("tableppm");
+	obj10->bump.readTexture("br-normal.ppm");
+	obj10->rotate(0, 1, 0, 90);
+	obj10->translate(-25, 10, 15);
+
+	obj11 = new myObject3D();
+	obj11->readMesh("sol.obj");
+	obj11->scale(5, 1, 1);
+	obj11->computeNormals();
+	obj11->computePlaneTextureCoordinates();
+	obj11->computeTangents();
+	obj11->createObjectBuffers();
+	obj11->texture.readTexture("tableppm");
+	obj11->bump.readTexture("br-normal.ppm");
+	obj11->translate(25, 10, -15);
+
+	obj12 = new myObject3D();
+	obj12->readMesh("sol.obj");
+	obj12->scale(5, 1, 1);
+	obj12->computeNormals();
+	obj12->computePlaneTextureCoordinates();
+	obj12->computeTangents();
+	obj12->createObjectBuffers();
+	obj12->texture.readTexture("tableppm");
+	obj12->bump.readTexture("br-normal.ppm");
+	obj12->translate(25, 10, 45);
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
