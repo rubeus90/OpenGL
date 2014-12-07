@@ -51,7 +51,7 @@ vector<GLfloat> vertices;
 vector<GLfloat> normals;
 vector<GLuint> indices;
 
-myObject3D *obj1, *obj2, *obj3, *obj4, *obj5, *obj6;
+myObject3D *obj1, *obj2, *obj3, *obj4, *obj5, *obj6, *obj7,*obj8;
 
 //This function is called when a mouse button is pressed.
 void mouse(int button, int state, int x, int y)
@@ -211,7 +211,9 @@ void display()
 	obj4->displayObject(shaderprogram1, view_matrix);
 	obj5->displayObject(shaderprogram1, view_matrix);
 	obj6->displayObject(shaderprogram1, view_matrix);
-
+	obj7->displayObject(shaderprogram1, view_matrix);
+	obj8->displayObject(shaderprogram1, view_matrix);
+	
 	//Draw the light
 	glUniform1i(renderStyle_loc, 4);
 	glPointSize(12.0);
@@ -274,7 +276,8 @@ void init()
 	obj2->createObjectBuffers();
 	obj2->texture.readTexture("meuble.ppm");
 	obj2->bump.readTexture("br-normal.ppm");
-	obj2->translate(20, 0, -5);
+	obj2->rotate(0, 1, 0, 270);
+	obj2->translate(20, 0, 0);
 
 	obj3 = new myObject3D();
 	obj3->readMesh("canape.obj");
@@ -284,8 +287,8 @@ void init()
 	obj3->createObjectBuffers();
 	obj3->texture.readTexture("canape.ppm");
 	obj3->bump.readTexture("br-normal.ppm");
-	obj3->rotate(0, 1, 0, 270);
-	obj3->translate(30, 0, 10);
+	obj3->rotate(0, 1, 0, 90);
+	obj3->translate(32, 0, 0);
 
 	obj4 = new myObject3D();
 	obj4->readMesh("desk.obj");
@@ -295,8 +298,8 @@ void init()
 	obj4->createObjectBuffers();
 	obj4->texture.readTexture("table.ppm");
 	obj4->bump.readTexture("br-normal.ppm");
-	obj4->rotate(0, 1, 0,90);
-	obj4->translate(-20, 0, 10);
+	obj4->rotate(0, 1, 0,180);
+	obj4->translate(60, 0, 30);
 
 	obj5 = new myObject3D();
 	obj5->readMesh("table.obj");
@@ -307,19 +310,45 @@ void init()
 	obj5->texture.readTexture("table.ppm");
 	obj5->bump.readTexture("br-normal.ppm");
 	obj5->rotate(1,0, 0, 270);
-	obj5->translate(0, 0, 30);
+	obj5->rotate(0, 1, 0, 90);
+	obj5->translate(45, 0, 0);
 
 	obj6 = new myObject3D();
 	obj6->readMesh("sol.obj");
-	obj6->scale(4, 4, 4);
+	obj6->scale(2.5, 3, 1);
 	obj6->computeNormals();
 	obj6->computePlaneTextureCoordinates();
 	obj6->computeTangents();
 	obj6->createObjectBuffers();
 	obj6->texture.readTexture("floor.ppm");
 	obj6->bump.readTexture("br-normal.ppm");
-	
 	obj6->rotate(1, 0, 0, 90);
+	obj6->translate(0, 0, 15); //(y,z,x)
+
+	obj7 = new myObject3D();
+	obj7->readMesh("sol.obj");
+	obj7->scale(2.5, 3, 1);
+	obj7->computeNormals();
+	obj7->computePlaneTextureCoordinates();
+	obj7->computeTangents();
+	obj7->createObjectBuffers();
+	obj7->texture.readTexture("tableppm");
+	obj7->bump.readTexture("br-normal.ppm");
+	obj7->rotate(1, 0, 0, 90);
+	obj7->translate(50, 0, 15); //(x,z,y)
+
+
+	obj8 = new myObject3D();
+	obj8->readMesh("sol.obj");
+	obj8->scale(2, 1, 1);
+	obj8->computeNormals();
+	obj8->computePlaneTextureCoordinates();
+	obj8->computeTangents();
+	obj8->createObjectBuffers();
+	obj8->texture.readTexture("tableppm");
+	obj8->bump.readTexture("br-normal.ppm");
+	obj8->rotate(0, 1, 0, 90);
+	obj8->translate(25, 10, 5); //(x,z,y)
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
