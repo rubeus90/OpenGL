@@ -24,6 +24,8 @@ public:
 	myTexture texture;
 	myTexture bump;
 	glm::mat4 model_matrix;
+
+	int xmin, xmax, ymin, ymax, zmin, zmax;
 	
 	myObject3D() {
 		model_matrix = glm::mat4(1.0f);
@@ -65,6 +67,20 @@ public:
 				indices.push_back(f2-1);
 				indices.push_back(f3-1);
 			}
+		}
+
+		xmin = vertices[0]; xmax = vertices[0];
+		ymin = vertices[1]; ymax = vertices[1];
+		zmin = vertices[2]; zmin = vertices[2];
+		for (int i = 0; i < vertices.size()/3; i++){
+			if (vertices[3*i] < xmin) xmin = vertices[3*i];
+			if (vertices[3*i] > xmax) xmax = vertices[3*i];
+
+			if (vertices[3*i+1] < ymin) ymin = vertices[3*i+1];
+			if (vertices[3*i+1] > ymax) ymax = vertices[3*i+1];
+
+			if (vertices[3*i+2] < zmin) zmin = vertices[3*i+2];
+			if (vertices[3*i+2] > zmax) zmax = vertices[3*i+2];
 		}
 	}
 
@@ -244,6 +260,9 @@ public:
 	void translate(double x, double y, double z){
 		glm::mat4 tmp = glm::translate(glm::vec3(x, y, z));
 		model_matrix = tmp * model_matrix;
+		xmin += x; xmax += x;
+		ymin += y; ymax += y;
+		zmin += z; zmax += z;
 	}
 
 	void rotate(double axis_x, double axis_y, double axis_z, double angle){
@@ -254,6 +273,9 @@ public:
 	void scale(double x, double y, double z){
 		glm::mat4 tmp = glm::scale(glm::vec3(x, y, z));
 		model_matrix = tmp * model_matrix;
+		xmin = (xmax + xmin) / 2 - (xmax - xmin) / 2 * x; xmax = (xmax + xmin) / 2 + (xmax - xmin) / 2 * x;
+		ymin = (ymax + ymin) / 2 - (ymax - ymin) / 2 * y; ymax = (ymax + ymin) / 2 + (ymax - ymin) / 2 * y;
+		zmin = (zmax + zmin) / 2 - (zmax - zmin) / 2 * z; zmax = (zmax + zmin) / 2 + (zmax - zmin) / 2 * z;
 	}
 
 	void computeTangent(int v0, int v1, int v2, float & x, float & y, float & z)

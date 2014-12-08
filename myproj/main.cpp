@@ -22,7 +22,7 @@ using namespace std;
 int Glut_w = 600, Glut_h = 400; 
 
 //Variables and their values for the camera setup.
-myPoint3D camera_eye(0,10,0);
+myPoint3D camera_eye(0,10,15);
 myVector3D camera_up(0,1,0);
 myVector3D camera_forward (0,0,-1);
 
@@ -51,7 +51,9 @@ vector<GLfloat> vertices;
 vector<GLfloat> normals;
 vector<GLuint> indices;
 
-myObject3D *obj1, *obj2, *obj3, *obj4, *obj5, *obj6, *obj7,*obj8, *obj9, *obj10, *obj11, *obj12,*obj13,*obj14;
+//myObject3D *obj1, *obj2, *obj3, *obj4, *obj5, *obj6, *obj7,*obj8, *obj9, *obj10, *obj11, *obj12,*obj13,*obj14;
+
+vector<myObject3D> listObjects;
 
 //This function is called when a mouse button is pressed.
 void mouse(int button, int state, int x, int y)
@@ -135,10 +137,33 @@ void keyboard(unsigned char key, int x, int y) {
 	glutPostRedisplay();
 }
 
+bool isCollision(){
+	bool collision = false;
+	for (int i = 0; i < listObjects.size(); i++){
+		if (camera_eye.X >= listObjects[i].xmin &&
+			camera_eye.X <= listObjects[i].xmax &&
+			camera_eye.Y >= listObjects[i].ymin &&
+			camera_eye.Y <= listObjects[i].ymax &&
+			camera_eye.Z >= listObjects[i].zmin &&
+			camera_eye.Z <= listObjects[i].zmax){
+
+			cout << "Object " << i;
+			cout << "X " << camera_eye.X << " min " << listObjects[i].xmin << " max " << listObjects[i].xmax << "\n";
+			cout << "Y " << camera_eye.Y << " min " << listObjects[i].ymin << " max " << listObjects[i].ymax << "\n";
+			cout << "Z " << camera_eye.Z << " min " << listObjects[i].zmin << " max " << listObjects[i].zmax << "\n";
+			cout << "\n" << endl;
+
+			collision = true;
+		}
+	}
+	return collision;
+}
+
 //This function is called when an arrow key is pressed.
 void keyboard2(int key, int x, int y) {
 	switch(key) {
 	case GLUT_KEY_UP:
+		if (!isCollision())
 		camera_eye += camera_forward*1.1;
 		break;
 	case GLUT_KEY_DOWN:
@@ -205,7 +230,10 @@ void display()
 
 	//Draw object
 	glUniform1i(renderStyle_loc, 2);
-	obj1->displayObject(shaderprogram1, view_matrix);
+	for (int i = 0; i < listObjects.size(); i++){
+		listObjects[i].displayObject(shaderprogram1, view_matrix);
+	}
+	/*obj1->displayObject(shaderprogram1, view_matrix);
 	obj2->displayObject(shaderprogram1, view_matrix);
 	obj3->displayObject(shaderprogram1, view_matrix);
 	obj4->displayObject(shaderprogram1, view_matrix);
@@ -218,7 +246,7 @@ void display()
 	obj11->displayObject(shaderprogram1, view_matrix);
 	obj12->displayObject(shaderprogram1, view_matrix);
 	obj13->displayObject(shaderprogram1, view_matrix);
-	obj14->displayObject(shaderprogram1, view_matrix);
+	obj14->displayObject(shaderprogram1, view_matrix);*/
 	
 	//Draw the light
 	glUniform1i(renderStyle_loc, 4);
@@ -265,7 +293,7 @@ void init()
 	mylight_direction_loc = glGetUniformLocation(shaderprogram1, "mylight_direction");
 	mylight_type_loc = glGetUniformLocation(shaderprogram1, "mylight_type");
 	// Lit
-	obj1 = new myObject3D();
+	myObject3D* obj1 = new myObject3D();
 	obj1->readMesh("bed.obj");
 	obj1->computeNormals();
 	obj1->computeSphereTextureCoordinates();
@@ -273,9 +301,10 @@ void init()
 	obj1->createObjectBuffers();
 	obj1->texture.readTexture("br-diffuse.ppm");
 	obj1->bump.readTexture("br-normal.ppm");
+	listObjects.push_back(*obj1);
 
 	// Commode
-	obj2 = new myObject3D();
+	myObject3D* obj2 = new myObject3D();
 	obj2->readMesh("meuble.obj");
 	obj2->computeNormals();
 	obj2->computeSphereTextureCoordinates();
@@ -285,9 +314,10 @@ void init()
 	obj2->bump.readTexture("br-normal.ppm");
 	obj2->rotate(0, 1, 0, 270);
 	obj2->translate(20, 0, 0);
+	listObjects.push_back(*obj2);
 
 	// Canape
-	obj3 = new myObject3D();
+	myObject3D* obj3 = new myObject3D();
 	obj3->readMesh("canape.obj");
 	obj3->computeNormals();
 	obj3->computeSphereTextureCoordinates();
@@ -297,9 +327,10 @@ void init()
 	obj3->bump.readTexture("br-normal.ppm");
 	obj3->rotate(0, 1, 0, 90);
 	obj3->translate(32, 0, 0);
+	listObjects.push_back(*obj3);
 
 	// Bureau
-	obj4 = new myObject3D();
+	myObject3D* obj4 = new myObject3D();
 	obj4->readMesh("desk.obj");
 	obj4->computeNormals();
 	obj4->computeSphereTextureCoordinates();
@@ -309,9 +340,10 @@ void init()
 	obj4->bump.readTexture("br-normal.ppm");
 	obj4->rotate(0, 1, 0,180);
 	obj4->translate(60, 0, 30);
+	listObjects.push_back(*obj4);
 
 	// Table
-	obj5 = new myObject3D();
+	myObject3D* obj5 = new myObject3D();
 	obj5->readMesh("table.obj");
 	obj5->computeNormals();
 	obj5->computeSphereTextureCoordinates();
@@ -322,9 +354,10 @@ void init()
 	obj5->rotate(1,0, 0, 270);
 	obj5->rotate(0, 1, 0, 90);
 	obj5->translate(45, 0, 0);
+	listObjects.push_back(*obj5);
 
 	// Sol Chambre
-	obj6 = new myObject3D();
+	myObject3D* obj6 = new myObject3D();
 	obj6->readMesh("sol.obj");	
 	obj6->computeNormals();
 	obj6->computePlaneTextureCoordinates();
@@ -335,9 +368,10 @@ void init()
 	obj6->scale(2.5, 3, 1);
 	obj6->rotate(1, 0, 0, 90);
 	obj6->translate(0, 0, 15); //(y,z,x)
+	listObjects.push_back(*obj6);
 
 	// Sol salon
-	obj7 = new myObject3D();
+	myObject3D* obj7 = new myObject3D();
 	obj7->readMesh("sol.obj");
 	obj7->scale(2.5, 3, 1);
 	obj7->computeNormals();
@@ -348,9 +382,10 @@ void init()
 	obj7->bump.readTexture("br-normal.ppm");
 	obj7->rotate(1, 0, 0, 90);
 	obj7->translate(50, 0, 15); //(x,z,y)
+	listObjects.push_back(*obj7);
 
 	// Murs séparateur
-	obj8 = new myObject3D();
+	myObject3D* obj8 = new myObject3D();
 	obj8->readMesh("sol.obj");
 	obj8->scale(2, 1, 1);
 	obj8->computeNormals();
@@ -361,9 +396,10 @@ void init()
 	obj8->bump.readTexture("br-normal.ppm");
 	obj8->rotate(0, 1, 0, 90);
 	obj8->translate(25, 10, 5);
+	listObjects.push_back(*obj8);
 
 	// 4 murs autours
-	obj9 = new myObject3D();
+	myObject3D* obj9 = new myObject3D();
 	obj9->readMesh("sol.obj");
 	obj9->scale(3, 1, 1);
 	obj9->computeNormals();
@@ -374,8 +410,9 @@ void init()
 	obj9->bump.readTexture("br-normal.ppm");
 	obj9->rotate(0, 1, 0, 90);
 	obj9->translate(75, 10, 15);
+	listObjects.push_back(*obj9);
 
-	obj10 = new myObject3D();
+	myObject3D* obj10 = new myObject3D();
 	obj10->readMesh("sol.obj");
 	obj10->scale(3, 1, 1);
 	obj10->computeNormals();
@@ -386,8 +423,9 @@ void init()
 	obj10->bump.readTexture("br-normal.ppm");
 	obj10->rotate(0, 1, 0, 90);
 	obj10->translate(-25, 10, 15);
+	listObjects.push_back(*obj10);
 
-	obj11 = new myObject3D();
+	myObject3D* obj11 = new myObject3D();
 	obj11->readMesh("sol.obj");
 	obj11->scale(5, 1, 1);
 	obj11->computeNormals();
@@ -397,8 +435,9 @@ void init()
 	obj11->texture.readTexture("wall.ppm");
 	obj11->bump.readTexture("br-normal.ppm");
 	obj11->translate(25, 10, -15);
+	listObjects.push_back(*obj11);
 
-	obj12 = new myObject3D();
+	myObject3D* obj12 = new myObject3D();
 	obj12->readMesh("sol.obj");
 	obj12->scale(5, 1, 1);
 	obj12->computeNormals();
@@ -408,9 +447,10 @@ void init()
 	obj12->texture.readTexture("wall.ppm");
 	obj12->bump.readTexture("br-normal.ppm");
 	obj12->translate(25, 10, 45);
+	listObjects.push_back(*obj12);
 
 	//Etagere
-	obj13 = new myObject3D();
+	myObject3D* obj13 = new myObject3D();
 	obj13->readMesh("etagere.obj");
 	obj13->computeNormals();
 	obj13->computePlaneTextureCoordinates();
@@ -419,9 +459,10 @@ void init()
 	obj13->texture.readTexture("etagere.ppm");
 	obj13->bump.readTexture("etagereNormal.ppm");
 	obj13->translate(-15, 0, 43);
+	listObjects.push_back(*obj13);
 
 	// Etagere deco
-	obj14 = new myObject3D();
+	myObject3D* obj14 = new myObject3D();
 	obj14->readMesh("deco.obj");
 	obj14->computeNormals();
 	obj14->computePlaneTextureCoordinates();
@@ -431,6 +472,7 @@ void init()
 	obj14->bump.readTexture("etagereNormal.ppm");
 	obj14->rotate(0, 1, 0, 180);
 	obj14->translate(79, -4, 5);
+	listObjects.push_back(*obj14);
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
