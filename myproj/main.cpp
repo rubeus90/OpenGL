@@ -22,7 +22,7 @@ using namespace std;
 int Glut_w = 600, Glut_h = 400; 
 
 //Variables and their values for the camera setup.
-myPoint3D camera_eye(0,0,1);
+myPoint3D camera_eye(0,10,0);
 myVector3D camera_up(0,1,0);
 myVector3D camera_forward (0,0,-1);
 
@@ -325,14 +325,14 @@ void init()
 
 	// Sol Chambre
 	obj6 = new myObject3D();
-	obj6->readMesh("sol.obj");
-	obj6->scale(2.5, 3, 1);
+	obj6->readMesh("sol.obj");	
 	obj6->computeNormals();
 	obj6->computePlaneTextureCoordinates();
 	obj6->computeTangents();
 	obj6->createObjectBuffers();
 	obj6->texture.readTexture("floor.ppm");
 	obj6->bump.readTexture("br-normal.ppm");
+	obj6->scale(2.5, 3, 1);
 	obj6->rotate(1, 0, 0, 90);
 	obj6->translate(0, 0, 15); //(y,z,x)
 

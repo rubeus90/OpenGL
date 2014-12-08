@@ -154,13 +154,19 @@ public:
 	void computePlaneTextureCoordinates(){
 		int n = vertices.size() / 3;
 		textures.resize(2 * n);
-		GLfloat x, y, z;
+		GLfloat x, y, xmax=vertices[0], ymax=vertices[1];
 		for (int i = 0; i<n; i++)
 		{
-			x = vertices[3 * i]; y = vertices[3 * i + 1]; z = vertices[3 * i + 2];
+			if (vertices[3*i] > xmax) xmax = vertices[3*i];
+			if (vertices[3 * i + 1] > ymax) ymax = vertices[3 * i + 1];
+		}
 
-			textures[2 * i + 1] = x;
-			textures[2 * i] = y;
+		for (int i = 0; i<n; i++)
+		{
+			x = vertices[3 * i]; y = vertices[3 * i + 1];
+
+			if(y>0.0f) textures[2 * i + 1] = y / ymax;
+			if(x>0.0f) textures[2 * i] = x / xmax;
 		}
 	}
 
