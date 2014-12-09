@@ -40,6 +40,7 @@ GLuint projection_matrix_loc;
 GLuint view_matrix_loc;
 GLuint normal_matrix_loc;
 GLuint buffers[6];
+GLuint fboId;
 
 GLuint mylight_position_loc;
 GLuint mylight_color_loc;
@@ -50,8 +51,6 @@ GLuint light_type = 0;
 vector<GLfloat> vertices;
 vector<GLfloat> normals;
 vector<GLuint> indices;
-
-//myObject3D *obj1, *obj2, *obj3, *obj4, *obj5, *obj6, *obj7,*obj8, *obj9, *obj10, *obj11, *obj12,*obj13,*obj14;
 
 vector<myObject3D> listObjects;
 
@@ -191,6 +190,54 @@ void reshape(int width, int height){
 	glViewport(0, 0, Glut_w, Glut_h);
 }
 
+//Draw all the objects of the scene
+void drawObjects(glm::mat4 view_matrix){
+	glUniform1i(renderStyle_loc, 2);
+	for (int i = 0; i < listObjects.size(); i++){
+		listObjects[i].displayObject(shaderprogram1, view_matrix);
+	}
+}
+
+//Frame buffer object : capture the scene into a texture
+void fbo(){
+	glGenFramebuffers(1, &fboId);
+
+	//Generate and set up the texture to store the color values for the FBO
+	GLuint color_tex;
+	glGenTextures(1, &color_tex);
+	glBindTexture(GL_TEXTURE_2D, color_tex);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Glut_w, Glut_h, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+
+	//Generate and set up the texture to store the depth values for the FBO
+	GLuint depth_tex;
+	glGenTextures(1, &depth_tex);
+	glBindTexture(GL_TEXTURE_2D, depth_tex);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_INTENSITY);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, Glut_w, Glut_h, 0,
+	GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
+
+	//Bind the FBO
+	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
+
+	// attach the color texture to FBO
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, color_tex, 0);
+	// attach the depth texture to FBO
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depth_tex, 0);
+
+	//Unbind the buffer
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
 //This function is called to display objects on screen.
 void display() 
 {
@@ -226,27 +273,13 @@ void display()
 
 	glUniform1i(mylight_type_loc, light_type);
 
-	//glUniform1i(tex_loc, 1);
 
-	//Draw object
-	glUniform1i(renderStyle_loc, 2);
-	for (int i = 0; i < listObjects.size(); i++){
-		listObjects[i].displayObject(shaderprogram1, view_matrix);
-	}
-	/*obj1->displayObject(shaderprogram1, view_matrix);
-	obj2->displayObject(shaderprogram1, view_matrix);
-	obj3->displayObject(shaderprogram1, view_matrix);
-	obj4->displayObject(shaderprogram1, view_matrix);
-	obj5->displayObject(shaderprogram1, view_matrix);
-	obj6->displayObject(shaderprogram1, view_matrix);
-	obj7->displayObject(shaderprogram1, view_matrix);
-	obj8->displayObject(shaderprogram1, view_matrix);
-	obj9->displayObject(shaderprogram1, view_matrix);
-	obj10->displayObject(shaderprogram1, view_matrix);
-	obj11->displayObject(shaderprogram1, view_matrix);
-	obj12->displayObject(shaderprogram1, view_matrix);
-	obj13->displayObject(shaderprogram1, view_matrix);
-	obj14->displayObject(shaderprogram1, view_matrix);*/
+	//to use the FrameBufferObject to capture a snapshot of the scene, first bind it and then draw the scene you want to capture, and then unbind it
+	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
+	drawObjects(view_matrix);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	drawObjects(view_matrix);
+
 	
 	//Draw the light
 	glUniform1i(renderStyle_loc, 4);
@@ -254,22 +287,6 @@ void display()
 	glBegin(GL_POINTS);
 	glVertex3f(light_position[0], light_position[1], light_position[2]);
 	glEnd();
-	/*glBegin(GL_LINES);
-	glVertex3f(light_position[0], light_position[1], light_position[2]);
-	glVertex3f(light_position[0] + light_direction[0], light_position[1] + light_direction[2], light_position[2] + light_direction[2] );
-	glEnd();*/
-
-
-	//obj1 -> drawNormals();
-	/*{
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
-
-	glDrawElements(GL_TRIANGLES, 12 * 3, GL_UNSIGNED_INT, 0);
-	}*/
 
 	glFlush();
 }
@@ -291,7 +308,7 @@ void init()
 	mylight_position_loc = glGetUniformLocation(shaderprogram1, "mylight_position");
 	mylight_color_loc = glGetUniformLocation(shaderprogram1, "mylight_color");
 	mylight_direction_loc = glGetUniformLocation(shaderprogram1, "mylight_direction");
-	mylight_type_loc = glGetUniformLocation(shaderprogram1, "mylight_type");
+	mylight_type_loc = glGetUniformLocation(shaderprogram1, "mylight_type");	fbo();
 	// Lit
 	myObject3D* obj1 = new myObject3D();
 	obj1->readMesh("bed.obj");
@@ -474,25 +491,8 @@ void init()
 	obj14->translate(79, -4, 5);
 	listObjects.push_back(*obj14);
 
-
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
 	glUniform1i(glGetUniformLocation(shaderprogram1, "bump"), 2);
-
-	/*{
-	GLfloat verts[] = {1,1,1, 1,1,-1, 1,-1,1, 1,-1,-1, -1,1,1, -1,1,-1, -1,-1,1, -1,-1,-1};
-	GLuint inds[] = {0,1,3, 0,3,2, 4,5,7, 4,7,6, 0,2,6, 0,6,4, 1,3,7, 1,7,5, 0,1,5, 0,5,4, 2,3,7, 2,7,6};
-	vertices = vector<GLfloat> (verts, verts+24);
-	indices = vector<GLuint> (inds, inds+36);
-
-	glGenBuffers(2, buffers);
-
-	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
-	glBufferData(GL_ARRAY_BUFFER, vertices.size()*4, &vertices.front(), GL_STATIC_DRAW);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size()*4, &indices.front(), GL_STATIC_DRAW);
-	}*/
-
 
 	glClearColor(0.4, 0.4, 0.4, 0);
 }

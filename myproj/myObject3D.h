@@ -209,7 +209,6 @@ public:
 
 	void displayObject(GLuint shaderprogram, glm::mat4 viewmatrix)
 	{
-		//model_matrix = glm::mat4(1.0f);
 		glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mymodel_matrix"), 1, GL_FALSE, &model_matrix[0][0]);
 
 		glm::mat3 normal_matrix = glm::transpose(glm::inverse(glm::mat3(viewmatrix*model_matrix)));
