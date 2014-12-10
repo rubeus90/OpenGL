@@ -215,7 +215,7 @@ void display()
 	glUniformMatrix3fv(normal_matrix_loc, 1, GL_FALSE, &normal_matrix[0][0]);
 	
 	//Light
-	glm::vec4 light_position = glm::vec4(0, 0, 0.6, 1);
+	glm::vec4 light_position = glm::vec4(0, 5, 5, 1);
 	glUniform4fv(mylight_position_loc, 1, &light_position[0]);
 	
 	glm::vec4 light_color = glm::vec4(1, 1, 1, 0);
@@ -311,7 +311,7 @@ void init()
 	obj2->computeTangents();
 	obj2->createObjectBuffers();
 	obj2->texture.readTexture("meuble.ppm");
-	obj2->bump.readTexture("br-normal.ppm");
+	obj2->bump.readTexture("wall-normal.ppm");
 	obj2->rotate(0, 1, 0, 270);
 	obj2->translate(20, 0, 0);
 	listObjects.push_back(*obj2);
@@ -324,7 +324,7 @@ void init()
 	obj3->computeTangents();
 	obj3->createObjectBuffers();
 	obj3->texture.readTexture("canape.ppm");
-	obj3->bump.readTexture("br-normal.ppm");
+	obj3->bump.readTexture("wall-normal.ppm");
 	obj3->rotate(0, 1, 0, 90);
 	obj3->translate(32, 0, 0);
 	listObjects.push_back(*obj3);
@@ -337,7 +337,7 @@ void init()
 	obj4->computeTangents();
 	obj4->createObjectBuffers();
 	obj4->texture.readTexture("table.ppm");
-	obj4->bump.readTexture("br-normal.ppm");
+	obj4->bump.readTexture("wall-normal.ppm");
 	obj4->rotate(0, 1, 0,180);
 	obj4->translate(60, 0, 30);
 	listObjects.push_back(*obj4);
@@ -350,7 +350,7 @@ void init()
 	obj5->computeTangents();
 	obj5->createObjectBuffers();
 	obj5->texture.readTexture("table.ppm");
-	obj5->bump.readTexture("br-normal.ppm");
+	obj5->bump.readTexture("wall-normal.ppm");
 	obj5->rotate(1,0, 0, 270);
 	obj5->rotate(0, 1, 0, 90);
 	obj5->translate(45, 0, 0);
@@ -364,7 +364,7 @@ void init()
 	obj6->computeTangents();
 	obj6->createObjectBuffers();
 	obj6->texture.readTexture("floor.ppm");
-	obj6->bump.readTexture("br-normal.ppm");
+	obj6->bump.readTexture("wall-normal.ppm");
 	obj6->scale(2.5, 3, 1);
 	obj6->rotate(1, 0, 0, 90);
 	obj6->translate(0, 0, 15); //(y,z,x)
@@ -387,13 +387,13 @@ void init()
 	// Murs séparateur
 	myObject3D* obj8 = new myObject3D();
 	obj8->readMesh("sol.obj");
-	obj8->scale(2, 1, 1);
+	obj8->scale(2, 2, 10);
 	obj8->computeNormals();
 	obj8->computePlaneTextureCoordinates();
 	obj8->computeTangents();
 	obj8->createObjectBuffers();
-	obj8->texture.readTexture("wall.ppm");
-	obj8->bump.readTexture("br-normal.ppm");
+	obj8->texture.readTexture("murs.ppm");
+	obj8->bump.readTexture("wall-normal.ppm");
 	obj8->rotate(0, 1, 0, 90);
 	obj8->translate(25, 10, 5);
 	listObjects.push_back(*obj8);
@@ -401,51 +401,51 @@ void init()
 	// 4 murs autours
 	myObject3D* obj9 = new myObject3D();
 	obj9->readMesh("sol.obj");
-	obj9->scale(3, 1, 1);
+	obj9->scale(3, 2, 1);
 	obj9->computeNormals();
 	obj9->computePlaneTextureCoordinates();
 	obj9->computeTangents();
 	obj9->createObjectBuffers();
-	obj9->texture.readTexture("wall.ppm");
-	obj9->bump.readTexture("br-normal.ppm");
+	obj9->texture.readTexture("murs.ppm");
+	obj9->bump.readTexture("wall-normal.ppm");
 	obj9->rotate(0, 1, 0, 90);
 	obj9->translate(75, 10, 15);
 	listObjects.push_back(*obj9);
 
 	myObject3D* obj10 = new myObject3D();
 	obj10->readMesh("sol.obj");
-	obj10->scale(3, 1, 1);
+	obj10->scale(3, 2, 1);
 	obj10->computeNormals();
 	obj10->computePlaneTextureCoordinates();
 	obj10->computeTangents();
 	obj10->createObjectBuffers();
-	obj10->texture.readTexture("wall.ppm");
-	obj10->bump.readTexture("br-normal.ppm");
+	obj10->texture.readTexture("murs.ppm");
+	obj10->bump.readTexture("wall-normal.ppm");
 	obj10->rotate(0, 1, 0, 90);
 	obj10->translate(-25, 10, 15);
 	listObjects.push_back(*obj10);
 
 	myObject3D* obj11 = new myObject3D();
 	obj11->readMesh("sol.obj");
-	obj11->scale(5, 1, 1);
+	obj11->scale(5, 2, 1);
 	obj11->computeNormals();
 	obj11->computePlaneTextureCoordinates();
 	obj11->computeTangents();
 	obj11->createObjectBuffers();
-	obj11->texture.readTexture("wall.ppm");
-	obj11->bump.readTexture("br-normal.ppm");
+	obj11->texture.readTexture("murs.ppm");
+	//obj11->bump.readTexture("wall-normal.ppm");
 	obj11->translate(25, 10, -15);
 	listObjects.push_back(*obj11);
 
 	myObject3D* obj12 = new myObject3D();
 	obj12->readMesh("sol.obj");
-	obj12->scale(5, 1, 1);
+	obj12->scale(5, 2, 1);
 	obj12->computeNormals();
 	obj12->computePlaneTextureCoordinates();
 	obj12->computeTangents();
 	obj12->createObjectBuffers();
-	obj12->texture.readTexture("wall.ppm");
-	obj12->bump.readTexture("br-normal.ppm");
+	obj12->texture.readTexture("murs.ppm");
+	obj12->bump.readTexture("wall-normal.ppm");
 	obj12->translate(25, 10, 45);
 	listObjects.push_back(*obj12);
 
@@ -473,6 +473,20 @@ void init()
 	obj14->rotate(0, 1, 0, 180);
 	obj14->translate(79, -4, 5);
 	listObjects.push_back(*obj14);
+
+	 // TOIT
+	myObject3D* obj15 = new myObject3D();
+	obj15->readMesh("sol.obj");
+	obj15->scale(5, 3, 1);
+	obj15->computeNormals();
+	obj15->computePlaneTextureCoordinates();
+	obj15->computeTangents();
+	obj15->createObjectBuffers();
+	obj15->texture.readTexture("roof.ppm");
+	obj15->bump.readTexture("wall-normal.ppm");
+	obj15->translate(25,15, -30);
+	obj15->rotate(1, 0, 0, 90);
+	listObjects.push_back(*obj15);
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
