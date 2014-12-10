@@ -9,6 +9,7 @@ uniform vec4 mylight_color;
 uniform vec3 mylight_direction;
 uniform int mylight_type;
 uniform mat4 mymodel_matrix;
+
 uniform sampler2D tex;
 uniform sampler2D bump;
 
@@ -48,7 +49,7 @@ void main (void)
 	
 	//Kd
 	vec4 kd = vec4(1,0,0,0); //without texture
-	kd= texture2D(tex, texture_to_fragment.st); //with texture
+	kd = texture2D(tex, texture_to_fragment.st); //with texture
 
 	vec4 ks = vec4(1,1,1,0);
 

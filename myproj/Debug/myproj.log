@@ -1,4 +1,4 @@
-﻿Build started 08/12/2014 15:48:47.
+﻿Build started 10/12/2014 22:04:28.
      1>Project "C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\myproj\myproj.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\myproj.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
@@ -28,18 +28,18 @@
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(163): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(165): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(166): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(252): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(255): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(251): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(254): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(262): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(263): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(264): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(265): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(275): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(276): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(277): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(278): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(308): warning C4101: 'k' : unreferenced local variable
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(307): warning C4101: 'k' : unreferenced local variable
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(30): warning C4305: 'initializing' : truncation from 'double' to 'float'
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(142): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(233): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(197): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(497): warning C4305: 'argument' : truncation from 'double' to 'GLclampf'
          GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
          GLM: rotate function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
@@ -56,4 +56,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.81
+Time Elapsed 00:00:02.05

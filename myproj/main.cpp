@@ -40,7 +40,8 @@ GLuint projection_matrix_loc;
 GLuint view_matrix_loc;
 GLuint normal_matrix_loc;
 GLuint buffers[6];
-GLuint fboId;
+
+GLuint color_tex;
 
 GLuint mylight_position_loc;
 GLuint mylight_color_loc;
@@ -162,7 +163,7 @@ bool isCollision(){
 void keyboard2(int key, int x, int y) {
 	switch(key) {
 	case GLUT_KEY_UP:
-		if (!isCollision())
+		//if (!isCollision())
 		camera_eye += camera_forward*1.1;
 		break;
 	case GLUT_KEY_DOWN:
@@ -199,11 +200,13 @@ void drawObjects(glm::mat4 view_matrix){
 }
 
 //Frame buffer object : capture the scene into a texture
-void fbo(){
+void fbo(glm::mat4 view_matrix){
+	GLuint fboId;
 	glGenFramebuffers(1, &fboId);
+	//Bind the FBO
+	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
 
 	//Generate and set up the texture to store the color values for the FBO
-	GLuint color_tex;
 	glGenTextures(1, &color_tex);
 	glBindTexture(GL_TEXTURE_2D, color_tex);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -223,19 +226,18 @@ void fbo(){
 	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_INTENSITY);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, Glut_w, Glut_h, 0,
-	GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
-
-	//Bind the FBO
-	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, Glut_w, Glut_h, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
 
 	// attach the color texture to FBO
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, color_tex, 0);
 	// attach the depth texture to FBO
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depth_tex, 0);
 
-	//Unbind the buffer
+	//to use the FrameBufferObject to capture a snapshot of the scene, first bind it and then draw the scene you want to capture, and then unbind it
+	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
+	drawObjects(view_matrix);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	drawObjects(view_matrix);
 }
 
 //This function is called to display objects on screen.
@@ -252,7 +254,7 @@ void display()
 		glm::perspective(fovy, Glut_w/(float)Glut_h, zNear, zFar);
 	glUniformMatrix4fv(projection_matrix_loc, 1, GL_FALSE, &projection_matrix[0][0]);
 
-	glm::mat4 view_matrix = 
+	glm::mat4 view_matrix =
 		glm::lookAt(glm::vec3(camera_eye.X, camera_eye.Y, camera_eye.Z), 
 					glm::vec3(camera_eye.X + camera_forward.dX, camera_eye.Y + camera_forward.dY, camera_eye.Z + camera_forward.dZ), 
 					glm::vec3(camera_up.dX, camera_up.dY, camera_up.dZ));
@@ -274,13 +276,8 @@ void display()
 	glUniform1i(mylight_type_loc, light_type);
 
 
-	//to use the FrameBufferObject to capture a snapshot of the scene, first bind it and then draw the scene you want to capture, and then unbind it
-	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
-	drawObjects(view_matrix);
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	drawObjects(view_matrix);
+	fbo(view_matrix);
 
-	
 	//Draw the light
 	glUniform1i(renderStyle_loc, 4);
 	glPointSize(12.0);
@@ -308,7 +305,7 @@ void init()
 	mylight_position_loc = glGetUniformLocation(shaderprogram1, "mylight_position");
 	mylight_color_loc = glGetUniformLocation(shaderprogram1, "mylight_color");
 	mylight_direction_loc = glGetUniformLocation(shaderprogram1, "mylight_direction");
-	mylight_type_loc = glGetUniformLocation(shaderprogram1, "mylight_type");	fbo();
+	mylight_type_loc = glGetUniformLocation(shaderprogram1, "mylight_type");	
 	// Lit
 	myObject3D* obj1 = new myObject3D();
 	obj1->readMesh("bed.obj");
@@ -316,7 +313,11 @@ void init()
 	obj1->computeSphereTextureCoordinates();
 	obj1->computeTangents();
 	obj1->createObjectBuffers();
-	obj1->texture.readTexture("br-diffuse.ppm");
+	//obj1->texture.readTexture("br-diffuse.ppm");
+	//On utilise color_tex comme texture a la place de lire la texture
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, color_tex);
+
 	obj1->bump.readTexture("br-normal.ppm");
 	listObjects.push_back(*obj1);
 
