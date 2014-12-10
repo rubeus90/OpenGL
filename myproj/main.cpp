@@ -339,7 +339,7 @@ void init()
 	obj4->texture.readTexture("table.ppm");
 	obj4->bump.readTexture("wall-normal.ppm");
 	obj4->rotate(0, 1, 0,180);
-	obj4->translate(60, 0, 30);
+	obj4->translate(65, 0, 40);
 	listObjects.push_back(*obj4);
 
 	// Table
