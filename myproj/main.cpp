@@ -274,7 +274,7 @@ void display()
 	glFlush();
 }
 
-GLubyte* readTexture(char* filename){
+GLubyte* readImage(char* filename){
 	FILE *inFile;
 	char buffer[100];
 	GLubyte *mytexture;
@@ -327,12 +327,12 @@ GLubyte* readTexture(char* filename){
 void cube_mapping(){
 	GLuint cubemap_texture;
 	GLubyte* cubeMap[6];
-	cubeMap[0] = readTexture("1.ppm");
-	cubeMap[1] = readTexture("2.ppm");
-	cubeMap[2] = readTexture("3.ppm");
-	cubeMap[3] = readTexture("4.ppm");
-	cubeMap[4] = readTexture("5.ppm");
-	cubeMap[5] = readTexture("6.ppm");
+	cubeMap[0] = readImage("1.ppm");
+	cubeMap[1] = readImage("2.ppm");
+	cubeMap[2] = readImage("3.ppm");
+	cubeMap[3] = readImage("4.ppm");
+	cubeMap[4] = readImage("5.ppm");
+	cubeMap[5] = readImage("6.ppm");
 
 	glEnable(GL_TEXTURE_CUBE_MAP);
 	glGenTextures(1, &cubemap_texture);

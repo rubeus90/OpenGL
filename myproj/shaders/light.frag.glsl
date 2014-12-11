@@ -51,8 +51,9 @@ void main (void)
 	vec4 kd = vec4(1,0,0,0); //without texture
 	kd= texture2D(tex, texture_to_fragment.st); //with texture
 	//Cube mapping
-	vec3 reflection = normalize(reflect(eyepos-mypos, normal));
-	 kd = textureCube(cubeMap, reflection); 
+	vec3 reflection = normalize(reflect(normalize(eyepos-mypos), normalize(normal)));
+	reflection = vec3 (inverse (myview_matrix) * vec4 (reflection, 0.0));
+	kd = textureCube(cubeMap, reflection); 
 
 	vec4 ks = vec4(1,1,1,0);
 
@@ -65,7 +66,7 @@ void main (void)
 	vec3 reflected_ray;
 
 	//Lumiere ambiante
-	gl_FragColor = kd * 0.3;
+	gl_FragColor += kd * 0.3;
 
 	//Silhouette
 //	if(dot(normal, normalize(eyepos-mypos)) < 0.2  && myrenderStyle == 0){
