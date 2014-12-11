@@ -322,14 +322,14 @@ public:
 			if (listPoint[i].dY < ymin){
 				ymin = listPoint[i].dY;
 			}
-			if (listPoint[i].dY < ymax){
+			if (listPoint[i].dY > ymax){
 				ymax = listPoint[i].dY;
 			}
 
 			if (listPoint[i].dZ < zmin){
 				zmin = listPoint[i].dZ;
 			}
-			if (listPoint[i].dZ < zmax){
+			if (listPoint[i].dZ > zmax){
 				zmax = listPoint[i].dZ;
 			}
 		}		
