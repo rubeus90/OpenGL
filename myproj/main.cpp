@@ -326,7 +326,7 @@ GLubyte* readTexture(char* filename){
 
 void cube_mapping(){
 	GLuint cubemap_texture;
-	GLubyte** cubeMap;
+	GLubyte* cubeMap[6];
 	cubeMap[0] = readTexture("1.ppm");
 	cubeMap[1] = readTexture("2.ppm");
 	cubeMap[2] = readTexture("3.ppm");
@@ -340,15 +340,16 @@ void cube_mapping(){
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER,
-		GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER,
-		GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 	for (int i = 0; i<6; i++) {
 		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, 256, 256, 0, GL_RGBA, GL_UNSIGNED_BYTE, cubeMap[i]);
 	}
+
+	GLint loc = glGetUniformLocation(shaderprogram1, "cubeMap");
+	glUniform1i(loc, 0);
 }
 
 //This function is called from the main to initalize everything.
@@ -568,6 +569,8 @@ void init()
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
 	glUniform1i(glGetUniformLocation(shaderprogram1, "bump"), 2);
+
+	cube_mapping();
 
 	/*{
 	GLfloat verts[] = {1,1,1, 1,1,-1, 1,-1,1, 1,-1,-1, -1,1,1, -1,1,-1, -1,-1,1, -1,-1,-1};

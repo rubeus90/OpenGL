@@ -11,6 +11,7 @@ uniform int mylight_type;
 uniform mat4 mymodel_matrix;
 uniform sampler2D tex;
 uniform sampler2D bump;
+uniform samplerCube cubeMap; 
 
 in vec4 vertex_to_fragment;
 in vec3 normal_to_fragment;
@@ -49,6 +50,9 @@ void main (void)
 	//Kd
 	vec4 kd = vec4(1,0,0,0); //without texture
 	kd= texture2D(tex, texture_to_fragment.st); //with texture
+	//Cube mapping
+	vec3 reflection = normalize(reflect(eyepos-mypos, normal));
+	 kd = textureCube(cubeMap, reflection); 
 
 	vec4 ks = vec4(1,1,1,0);
 
