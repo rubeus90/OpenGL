@@ -138,24 +138,22 @@ void keyboard(unsigned char key, int x, int y) {
 }
 
 bool isCollision(){
-	bool collision = false;
-	for (int i = 0; i < listObjects.size(); i++){
-		if (camera_eye.X >= listObjects[i].xmin &&
-			camera_eye.X <= listObjects[i].xmax &&
-			camera_eye.Y >= listObjects[i].ymin &&
-			camera_eye.Y <= listObjects[i].ymax &&
-			camera_eye.Z >= listObjects[i].zmin &&
-			camera_eye.Z <= listObjects[i].zmax){
-
-			cout << "Object " << i;
-			cout << "X " << camera_eye.X << " min " << listObjects[i].xmin << " max " << listObjects[i].xmax << "\n";
-			cout << "Y " << camera_eye.Y << " min " << listObjects[i].ymin << " max " << listObjects[i].ymax << "\n";
-			cout << "Z " << camera_eye.Z << " min " << listObjects[i].zmin << " max " << listObjects[i].zmax << "\n";
-			cout << "\n" << endl;
-
-			collision = true;
+	bool collision = true;
+	//for (int i = 0; i < listObjects.size(); i++){
+		if (camera_eye.X >= -24 &&
+			camera_eye.X <= 73 &&
+			camera_eye.Z >= -12  &&
+			camera_eye.Z <= 43){
+			collision = false;
+			cout << "Bloque dans la piece";
 		}
-	}
+
+		//cout << "Object " << i;
+		//cout << "X " << camera_eye.X; //<< " min " << listObjects[i].xmin << " max " << listObjects[i].xmax << "\n";
+		//cout << "Y " << camera_eye.Y; //<< " min " << listObjects[i].ymin << " max " << listObjects[i].ymax << "\n";
+		//cout << "Z " << camera_eye.Z; //<< " min " << listObjects[i].zmin << " max " << listObjects[i].zmax << "\n";
+		//cout << "\n" << endl;
+	//}
 	return collision;
 }
 
@@ -163,11 +161,16 @@ bool isCollision(){
 void keyboard2(int key, int x, int y) {
 	switch(key) {
 	case GLUT_KEY_UP:
-		if (!isCollision())
 		camera_eye += camera_forward*1.1;
+		if (isCollision()){
+			camera_eye += -camera_forward*1.1;
+		}
 		break;
 	case GLUT_KEY_DOWN:
 		camera_eye += -camera_forward*1.1;
+		if (isCollision()){
+			camera_eye += camera_forward*1.1;
+		}
 		break;
 	case GLUT_KEY_LEFT:
 		camera_up.normalize();
@@ -180,6 +183,8 @@ void keyboard2(int key, int x, int y) {
 		camera_forward.normalize();
 		break;
 	}
+
+	// -->
 	glutPostRedisplay();
 }
 
@@ -406,7 +411,7 @@ void init()
 	obj9->computePlaneTextureCoordinates();
 	obj9->computeTangents();
 	obj9->createObjectBuffers();
-	obj9->texture.readTexture("wall.ppm");
+	obj9->texture.readTexture("table.ppm");
 	obj9->bump.readTexture("br-normal.ppm");
 	obj9->rotate(0, 1, 0, 90);
 	obj9->translate(75, 10, 15);
