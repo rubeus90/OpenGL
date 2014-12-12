@@ -144,7 +144,7 @@ bool isCollision(myVector3D delta){
 		return true;
 	}
 
-	for (int i = 7; i < listObjects.size(); i++){
+	for (int i = 8; i < listObjects.size(); i++){
 		if (tmp.X >= listObjects[i].xmin && tmp.X <= listObjects[i].xmax && tmp.Z >= listObjects[i].zmin && tmp.Z <= listObjects[i].zmax){
 			return true;
 		}
