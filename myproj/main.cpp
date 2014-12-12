@@ -138,22 +138,18 @@ void keyboard(unsigned char key, int x, int y) {
 }
 
 bool isCollision(myVector3D delta){
-	bool collision = true;
 	myPoint3D tmp = camera_eye + delta;
-	//for (int i = 0; i < listObjects.size(); i++){
-		if (tmp.X >= -24 && tmp.X <= 73 &&
-			tmp.Z >= -12  && tmp.Z <= 43){
-			collision = false;
-			cout << "Bloque dans la piece";
-		}
 
-		//cout << "Object " << i;
-		//cout << "X " << camera_eye.X; //<< " min " << listObjects[i].xmin << " max " << listObjects[i].xmax << "\n";
-		//cout << "Y " << camera_eye.Y; //<< " min " << listObjects[i].ymin << " max " << listObjects[i].ymax << "\n";
-		//cout << "Z " << camera_eye.Z; //<< " min " << listObjects[i].zmin << " max " << listObjects[i].zmax << "\n";
-		//cout << "\n" << endl;
-	//}
-	return collision;
+	if (tmp.X < -24 || tmp.X > 73 || tmp.Z < -12 || tmp.Z > 43){
+		return true;
+	}
+
+	for (int i = 7; i < listObjects.size(); i++){
+		if (tmp.X >= listObjects[i].xmin && tmp.X <= listObjects[i].xmax && tmp.Z >= listObjects[i].zmin && tmp.Z <= listObjects[i].zmax){
+			return true;
+		}
+	}
+	return false;
 }
 
 //This function is called when an arrow key is pressed.
