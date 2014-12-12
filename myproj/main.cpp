@@ -123,9 +123,9 @@ void keyboard(unsigned char key, int x, int y) {
 		glUniform1i(renderStyle_loc, renderStyle);
 		break;
 	case 'r':
-		camera_eye = myPoint3D(0, 0, 2);
+		//camera_eye = myPoint3D(0, 10, 15);
 		camera_up = myVector3D(0, 1, 0);
-		camera_forward = myVector3D(0, 0, -1);
+		camera_forward = myVector3D(0, -1, -1);
 		break;
 	case 'l':
 		light_type = (light_type + 1) % 3;
@@ -154,10 +154,12 @@ bool isCollision(myVector3D delta){
 void keyboard2(int key, int x, int y) {
 	switch(key) {
 	case GLUT_KEY_UP:
-		camera_eye = isCollision(camera_forward*1.1) ? camera_eye : camera_eye + camera_forward*1.1;
+		//camera_eye = isCollision(camera_forward*1.1) ? camera_eye : camera_eye + camera_forward*1.1;
+		camera_eye = camera_eye + camera_forward*1.1;
 		break;
 	case GLUT_KEY_DOWN:
-		camera_eye = isCollision(-camera_forward*1.1) ? camera_eye : camera_eye + -camera_forward*1.1;
+		//camera_eye = isCollision(-camera_forward*1.1) ? camera_eye : camera_eye + -camera_forward*1.1;
+		camera_eye = camera_eye + -camera_forward*1.1;
 		break;
 	case GLUT_KEY_LEFT:
 		camera_up.normalize();
