@@ -310,7 +310,6 @@ void init()
 	obj2->createObjectBuffers();
 	obj2->texture.readTexture("meuble.ppm");
 	obj2->bump.readTexture("br-normal.ppm");
-	obj2->rotate(0, 1, 0, 270);
 	obj2->translate(20, 0, 0);
 	listObjects.push_back(*obj2);
 
@@ -323,7 +322,6 @@ void init()
 	obj3->createObjectBuffers();
 	obj3->texture.readTexture("canape.ppm");
 	obj3->bump.readTexture("br-normal.ppm");
-	obj3->rotate(0, 1, 0, 90);
 	obj3->translate(32, 0, 0);
 	listObjects.push_back(*obj3);
 
@@ -336,7 +334,7 @@ void init()
 	obj4->createObjectBuffers();
 	obj4->texture.readTexture("table.ppm");
 	obj4->bump.readTexture("br-normal.ppm");
-	obj4->rotate(0, 1, 0,180);
+	//obj4->rotate(0, 1, 0,180);
 	obj4->translate(60, 0, 30);
 	listObjects.push_back(*obj4);
 
@@ -349,7 +347,6 @@ void init()
 	obj5->createObjectBuffers();
 	obj5->texture.readTexture("table.ppm");
 	obj5->bump.readTexture("br-normal.ppm");
-	obj5->rotate(1,0, 0, 270);
 	obj5->rotate(0, 1, 0, 90);
 	obj5->translate(45, 0, 0);
 	listObjects.push_back(*obj5);
@@ -468,7 +465,6 @@ void init()
 	obj14->createObjectBuffers();
 	obj14->texture.readTexture("etagere.ppm");
 	obj14->bump.readTexture("etagereNormal.ppm");
-	obj14->rotate(0, 1, 0, 180);
 	obj14->translate(79, -4, 5);
 	listObjects.push_back(*obj14);
 
