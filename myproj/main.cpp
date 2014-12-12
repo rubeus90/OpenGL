@@ -252,7 +252,7 @@ void init()
 	mylight_direction_loc = glGetUniformLocation(shaderprogram1, "mylight_direction");
 	mylight_type_loc = glGetUniformLocation(shaderprogram1, "mylight_type");
 
-	// 4 murs autours
+	/// 4 murs autours
 	myObject3D* obj0 = new myObject3D();
 	obj0->readMesh("sol.obj");
 	obj0->scale(3, 2, 1);
@@ -261,7 +261,7 @@ void init()
 	obj0->computeTangents();
 	obj0->createObjectBuffers();
 	obj0->texture.readTexture("murs.ppm");
-	obj0->bump.readTexture("br-normal.ppm");
+	obj0->bump.readTexture("wall-normal.ppm");
 	obj0->rotate(0, 1, 0, 90);
 	obj0->translate(-25, 10, 15);
 	listObjects.push_back(*obj0);
@@ -274,7 +274,7 @@ void init()
 	obj1->computeTangents();
 	obj1->createObjectBuffers();
 	obj1->texture.readTexture("murs.ppm");
-	obj1->bump.readTexture("br-normal.ppm");
+	obj1->bump.readTexture("wall-normal.ppm");
 	obj1->translate(25, 10, -15);
 	listObjects.push_back(*obj1);
 
@@ -286,7 +286,7 @@ void init()
 	obj2->computeTangents();
 	obj2->createObjectBuffers();
 	obj2->texture.readTexture("murs.ppm");
-	obj2->bump.readTexture("br-normal.ppm");
+	obj2->bump.readTexture("wall-normal.ppm");
 	obj2->translate(25, 10, 45);
 	listObjects.push_back(*obj2);
 
@@ -298,7 +298,7 @@ void init()
 	obj3->computeTangents();
 	obj3->createObjectBuffers();
 	obj3->texture.readTexture("murs.ppm");
-	obj3->bump.readTexture("br-normal.ppm");
+	obj3->bump.readTexture("wall-normal.ppm");
 	obj3->rotate(0, 1, 0, 90);
 	obj3->translate(75, 10, 15);
 	listObjects.push_back(*obj3);
@@ -312,7 +312,7 @@ void init()
 	obj4->computeTangents();
 	obj4->createObjectBuffers();
 	obj4->texture.readTexture("murs.ppm");
-	obj4->bump.readTexture("br-normal.ppm");
+	obj4->bump.readTexture("wall-normal.ppm");
 	obj4->rotate(0, 1, 0, 90);
 	obj4->translate(25, 10, 5);
 	listObjects.push_back(*obj4);
@@ -444,6 +444,29 @@ void init()
 	//obj14->bump.readTexture("br-normal.ppm");
 	obj14->cubeMap.readCubeMapping();
 	listObjects.push_back(*obj14);
+
+	// Commode 2
+	myObject3D* obj15 = new myObject3D();
+	obj15->readMesh("meuble.obj");
+	obj15->computeNormals();
+	obj15->computeSphereTextureCoordinates();
+	obj15->computeTangents();
+	obj15->createObjectBuffers();
+	obj15->texture.readTexture("meuble.ppm");
+	obj15->bump.readTexture("br-normal.ppm");
+	obj15->translate(20, 0, 18);
+	listObjects.push_back(*obj15);
+
+	// Cube mapping
+	myObject3D* obj16 = new myObject3D();
+	obj16->readMesh("cubemapping.obj");
+	obj16->computeNormals();
+	obj16->computeSphereTextureCoordinates();
+	obj16->computeTangents();
+	obj16->createObjectBuffers();
+	obj16->texture.readTexture("roof.ppm");
+	obj16->translate(39, 5, -3);
+	listObjects.push_back(*obj16);
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
 	glUniform1i(glGetUniformLocation(shaderprogram1, "bump"), 2);
