@@ -31,7 +31,7 @@ void main (void)
 	mat3 out_m = transpose(in_m);
 
 	// Normal
-	//vec3 normal = normalize(mynormal_matrix * normal_to_fragment);
+	vec3 normal_without_bump = normalize(mynormal_matrix * normal_to_fragment);
 	vec3 normal = normalize (2.0 * texture2D(bump, texture_to_fragment.st).rgb - 1.f);
 
 	//Object position
@@ -52,7 +52,7 @@ void main (void)
 	vec4 kd = vec4(1,0,0,0); //without texture
 	
 	//Cube mapping
-	vec3 reflection = normalize(reflect(normalize(eyepos-mypos), normalize(normal)));
+	vec3 reflection = normalize(reflect(eyepos-mypos, normal_without_bump));
 	reflection = vec3 (inverse (myview_matrix) * vec4 (reflection, 0.0));
 	kd = textureCube(cubeMap, reflection); 
 
