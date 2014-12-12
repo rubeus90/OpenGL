@@ -440,9 +440,8 @@ void init()
 	obj14->computeSphereTextureCoordinates();
 	obj14->computeTangents();
 	obj14->createObjectBuffers();
-	//obj14->texture.readTexture("br-diffuse.ppm");
-	//obj14->bump.readTexture("br-normal.ppm");
-	obj14->cubeMap.readCubeMapping();
+	obj14->texture.readTexture("br-diffuse.ppm");
+	obj14->bump.readTexture("br-normal.ppm");
 	listObjects.push_back(*obj14);
 
 	// Commode 2
@@ -464,7 +463,7 @@ void init()
 	obj16->computeSphereTextureCoordinates();
 	obj16->computeTangents();
 	obj16->createObjectBuffers();
-	obj16->texture.readTexture("roof.ppm");
+	obj16->cubeMap.readCubeMapping();
 	obj16->translate(39, 5, -3);
 	listObjects.push_back(*obj16);
 
