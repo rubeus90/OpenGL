@@ -1,46 +1,60 @@
-﻿Build started 08/12/2014 15:48:47.
+﻿Build started 12/12/2014 22:04:24.
      1>Project "C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\myproj\myproj.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\myproj.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(72): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(73): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(74): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(75): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(75): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(76): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(77): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(77): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(78): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(79): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(80): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(81): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(82): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(83): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(96): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(97): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(84): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(85): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(98): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(106): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(111): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(127): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(131): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(132): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(99): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(100): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(108): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(113): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(129): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(133): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(145): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(134): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(135): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(147): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(148): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(163): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(149): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(150): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(165): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(166): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(252): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(255): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(263): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(264): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(265): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(276): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(277): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(278): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(308): warning C4101: 'k' : unreferenced local variable
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(167): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(168): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(257): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(260): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(270): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(271): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(272): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(300): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(311): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(312): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(313): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(314): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(315): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(316): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(321): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(324): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(328): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(331): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(335): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(338): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(344): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(352): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(353): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(354): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(384): warning C4101: 'k' : unreferenced local variable
      1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(30): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(142): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(233): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(497): warning C4305: 'argument' : truncation from 'double' to 'GLclampf'
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(147): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(228): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(504): warning C4305: 'argument' : truncation from 'double' to 'GLclampf'
          GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
          GLM: rotate function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
        Link:
@@ -51,9 +65,10 @@
          Debug\shaders.obj
          Debug\stdafx.obj
          Debug\vector3d.obj
+     1>LINK : warning LNK4067: ambiguous entry point; selected 'mainCRTStartup'
          myproj.vcxproj -> C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\Debug\myproj.exe
      1>Done Building Project "C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\myproj\myproj.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.81
+Time Elapsed 00:00:01.97

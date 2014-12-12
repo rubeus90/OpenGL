@@ -9,8 +9,10 @@ uniform vec4 mylight_color;
 uniform vec3 mylight_direction;
 uniform int mylight_type;
 uniform mat4 mymodel_matrix;
+
 uniform sampler2D tex;
 uniform sampler2D bump;
+uniform samplerCube cubeMap; 
 
 in vec4 vertex_to_fragment;
 in vec3 normal_to_fragment;
@@ -29,7 +31,7 @@ void main (void)
 	mat3 out_m = transpose(in_m);
 
 	// Normal
-	//vec3 normal = normalize(mynormal_matrix * normal_to_fragment);
+	vec3 normal_without_bump = normalize(mynormal_matrix * normal_to_fragment);
 	vec3 normal = normalize (2.0 * texture2D(bump, texture_to_fragment.st).rgb - 1.f);
 
 	//Object position
@@ -48,7 +50,15 @@ void main (void)
 	
 	//Kd
 	vec4 kd = vec4(1,0,0,0); //without texture
-	kd= texture2D(tex, texture_to_fragment.st); //with texture
+	
+	//Cube mapping
+	vec3 reflection = normalize(reflect(eyepos-mypos, normal_without_bump));
+	reflection = vec3 (inverse (myview_matrix) * vec4 (reflection, 0.0));
+	kd = textureCube(cubeMap, reflection); 
+
+	//Texture
+	kd += texture2D(tex, texture_to_fragment.st); 
+	
 
 	vec4 ks = vec4(1,1,1,0);
 
@@ -61,7 +71,7 @@ void main (void)
 	vec3 reflected_ray;
 
 	//Lumiere ambiante
-	gl_FragColor = kd * 0.3;
+	gl_FragColor += kd * 0.3;
 
 	//Silhouette
 //	if(dot(normal, normalize(eyepos-mypos)) < 0.2  && myrenderStyle == 0){
@@ -95,9 +105,6 @@ void main (void)
 				break;
 		}
 	}
-
-	//Texture
-	//if(myrenderStyle == 1) gl_FragColor = texture2D(tex, texture_to_fragment.st);
 
 	if(myrenderStyle == 4) gl_FragColor = vec4(1,1,1,0);
 }

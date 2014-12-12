@@ -476,13 +476,14 @@ void init()
 	obj14->computeSphereTextureCoordinates();
 	obj14->computeTangents();
 	obj14->createObjectBuffers();
-	obj14->texture.readTexture("br-diffuse.ppm");
-	obj14->bump.readTexture("br-normal.ppm");
+	//obj14->texture.readTexture("br-diffuse.ppm");
+	//obj14->bump.readTexture("br-normal.ppm");
+	obj14->cubeMap.readCubeMapping();
 	listObjects.push_back(*obj14);
-
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
 	glUniform1i(glGetUniformLocation(shaderprogram1, "bump"), 2);
+	glUniform1i(glGetUniformLocation(shaderprogram1, "cubeMap"), 3);
 
 	/*{
 	GLfloat verts[] = {1,1,1, 1,1,-1, 1,-1,1, 1,-1,-1, -1,1,1, -1,1,-1, -1,-1,1, -1,-1,-1};

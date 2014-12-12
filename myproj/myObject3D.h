@@ -23,6 +23,8 @@ public:
 
 	myTexture texture;
 	myTexture bump;
+	myTexture cubeMap;
+
 	glm::mat4 model_matrix;
 
 	int xmin, xmax, ymin, ymax, zmin, zmax;
@@ -242,6 +244,9 @@ public:
 
 		glActiveTexture(GL_TEXTURE2);
 		glBindTexture(GL_TEXTURE_2D, bump.texName);
+
+		glActiveTexture(GL_TEXTURE3);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMap.texName);
 
 		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 	}
