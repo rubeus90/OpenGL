@@ -9,6 +9,7 @@ uniform vec4 mylight_color;
 uniform vec3 mylight_direction;
 uniform int mylight_type;
 uniform mat4 mymodel_matrix;
+
 uniform sampler2D tex;
 uniform sampler2D bump;
 uniform samplerCube cubeMap; 
@@ -49,11 +50,15 @@ void main (void)
 	
 	//Kd
 	vec4 kd = vec4(1,0,0,0); //without texture
-	kd= texture2D(tex, texture_to_fragment.st); //with texture
+	
 	//Cube mapping
 	vec3 reflection = normalize(reflect(normalize(eyepos-mypos), normalize(normal)));
 	reflection = vec3 (inverse (myview_matrix) * vec4 (reflection, 0.0));
 	kd = textureCube(cubeMap, reflection); 
+
+	//Texture
+	kd += texture2D(tex, texture_to_fragment.st); 
+	
 
 	vec4 ks = vec4(1,1,1,0);
 
@@ -100,9 +105,6 @@ void main (void)
 				break;
 		}
 	}
-
-	//Texture
-	//if(myrenderStyle == 1) gl_FragColor = texture2D(tex, texture_to_fragment.st);
 
 	if(myrenderStyle == 4) gl_FragColor = vec4(1,1,1,0);
 }

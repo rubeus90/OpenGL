@@ -1,54 +1,22 @@
-﻿Build started 11/12/2014 18:05:06.
+﻿Build started 12/12/2014 18:27:21.
      1>Project "C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\myproj\myproj.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\myproj.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
-         main.cpp
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(72): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(73): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(74): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(75): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(76): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(77): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(79): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(80): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(82): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(83): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(96): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(97): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(98): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(106): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(111): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(127): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(131): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(132): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(133): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(145): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(147): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(148): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(163): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(165): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(166): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(252): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(255): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(263): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(264): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(265): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(276): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(277): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(278): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myobject3d.h(308): warning C4101: 'k' : unreferenced local variable
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(30): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(142): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(233): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(284): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\myproj.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt myTexture.cpp
+         myTexture.cpp
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\mytexture.cpp(12): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(303): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\mytexture.cpp(31): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(304) : see declaration of 'sscanf'
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(308): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\mytexture.cpp(36): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(304) : see declaration of 'sscanf'
-     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\main.cpp(591): warning C4305: 'argument' : truncation from 'double' to 'GLclampf'
-         GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
-         GLM: rotate function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\mytexture.cpp(76): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\mytexture.cpp(95): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(304) : see declaration of 'sscanf'
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\mytexture.cpp(100): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(304) : see declaration of 'sscanf'
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\mytexture.cpp(120): warning C4101: 'cubemap_texture' : unreferenced local variable
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\mytexture.cpp(67): warning C4715: 'myTexture::readTexture' : not all control paths return a value
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\Debug\myproj.exe" /INCREMENTAL /NOLOGO freeglut.lib glu32.lib opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\Debug\myproj.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\Debug\myproj.lib" /MACHINE:X86 Debug\main.obj
          Debug\myproj.obj
@@ -62,4 +30,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.64
+Time Elapsed 00:00:00.51
