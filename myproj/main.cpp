@@ -51,8 +51,6 @@ vector<GLfloat> vertices;
 vector<GLfloat> normals;
 vector<GLuint> indices;
 
-//myObject3D *obj1, *obj2, *obj3, *obj4, *obj5, *obj6, *obj7,*obj8, *obj9, *obj10, *obj11, *obj12,*obj13,*obj14;
-
 vector<myObject3D> listObjects;
 
 //This function is called when a mouse button is pressed.
@@ -172,8 +170,6 @@ void keyboard2(int key, int x, int y) {
 		camera_forward.normalize();
 		break;
 	}
-
-	// -->
 	glutPostRedisplay();
 }
 
@@ -221,27 +217,11 @@ void display()
 
 	glUniform1i(mylight_type_loc, light_type);
 
-	//glUniform1i(tex_loc, 1);
-
 	//Draw object
 	glUniform1i(renderStyle_loc, 2);
 	for (int i = 0; i < listObjects.size(); i++){
 		listObjects[i].displayObject(shaderprogram1, view_matrix);
 	}
-	/*obj1->displayObject(shaderprogram1, view_matrix);
-	obj2->displayObject(shaderprogram1, view_matrix);
-	obj3->displayObject(shaderprogram1, view_matrix);
-	obj4->displayObject(shaderprogram1, view_matrix);
-	obj5->displayObject(shaderprogram1, view_matrix);
-	obj6->displayObject(shaderprogram1, view_matrix);
-	obj7->displayObject(shaderprogram1, view_matrix);
-	obj8->displayObject(shaderprogram1, view_matrix);
-	obj9->displayObject(shaderprogram1, view_matrix);
-	obj10->displayObject(shaderprogram1, view_matrix);
-	obj11->displayObject(shaderprogram1, view_matrix);
-	obj12->displayObject(shaderprogram1, view_matrix);
-	obj13->displayObject(shaderprogram1, view_matrix);
-	obj14->displayObject(shaderprogram1, view_matrix);*/
 	
 	//Draw the light
 	glUniform1i(renderStyle_loc, 4);
@@ -249,22 +229,6 @@ void display()
 	glBegin(GL_POINTS);
 	glVertex3f(light_position[0], light_position[1], light_position[2]);
 	glEnd();
-	/*glBegin(GL_LINES);
-	glVertex3f(light_position[0], light_position[1], light_position[2]);
-	glVertex3f(light_position[0] + light_direction[0], light_position[1] + light_direction[2], light_position[2] + light_direction[2] );
-	glEnd();*/
-
-
-	//obj1 -> drawNormals();
-	/*{
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
-
-	glDrawElements(GL_TRIANGLES, 12 * 3, GL_UNSIGNED_INT, 0);
-	}*/
 
 	glFlush();
 }
@@ -484,22 +448,6 @@ void init()
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
 	glUniform1i(glGetUniformLocation(shaderprogram1, "bump"), 2);
 	glUniform1i(glGetUniformLocation(shaderprogram1, "cubeMap"), 3);
-
-	/*{
-	GLfloat verts[] = {1,1,1, 1,1,-1, 1,-1,1, 1,-1,-1, -1,1,1, -1,1,-1, -1,-1,1, -1,-1,-1};
-	GLuint inds[] = {0,1,3, 0,3,2, 4,5,7, 4,7,6, 0,2,6, 0,6,4, 1,3,7, 1,7,5, 0,1,5, 0,5,4, 2,3,7, 2,7,6};
-	vertices = vector<GLfloat> (verts, verts+24);
-	indices = vector<GLuint> (inds, inds+36);
-
-	glGenBuffers(2, buffers);
-
-	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
-	glBufferData(GL_ARRAY_BUFFER, vertices.size()*4, &vertices.front(), GL_STATIC_DRAW);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size()*4, &indices.front(), GL_STATIC_DRAW);
-	}*/
-
 
 	glClearColor(0.4, 0.4, 0.4, 0);
 }
