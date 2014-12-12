@@ -290,183 +290,186 @@ void init()
 	mylight_color_loc = glGetUniformLocation(shaderprogram1, "mylight_color");
 	mylight_direction_loc = glGetUniformLocation(shaderprogram1, "mylight_direction");
 	mylight_type_loc = glGetUniformLocation(shaderprogram1, "mylight_type");
-	// Lit
+	// 4 murs autours
+	myObject3D* obj0 = new myObject3D();
+	obj0->readMesh("sol.obj");
+	obj0->scale(3, 1, 1);
+	obj0->computeNormals();
+	obj0->computePlaneTextureCoordinates();
+	obj0->computeTangents();
+	obj0->createObjectBuffers();
+	obj0->texture.readTexture("wall.ppm");
+	obj0->bump.readTexture("br-normal.ppm");
+	obj0->rotate(0, 1, 0, 90);
+	obj0->translate(-25, 10, 15);
+	listObjects.push_back(*obj0);
+
 	myObject3D* obj1 = new myObject3D();
-	obj1->readMesh("bed.obj");
+	obj1->readMesh("sol.obj");
+	obj1->scale(5, 1, 1);
 	obj1->computeNormals();
-	obj1->computeSphereTextureCoordinates();
+	obj1->computePlaneTextureCoordinates();
 	obj1->computeTangents();
 	obj1->createObjectBuffers();
-	obj1->texture.readTexture("br-diffuse.ppm");
+	obj1->texture.readTexture("wall.ppm");
 	obj1->bump.readTexture("br-normal.ppm");
+	obj1->translate(25, 10, -15);
 	listObjects.push_back(*obj1);
 
-	// Commode
 	myObject3D* obj2 = new myObject3D();
-	obj2->readMesh("meuble.obj");
+	obj2->readMesh("sol.obj");
+	obj2->scale(5, 1, 1);
 	obj2->computeNormals();
-	obj2->computeSphereTextureCoordinates();
+	obj2->computePlaneTextureCoordinates();
 	obj2->computeTangents();
 	obj2->createObjectBuffers();
-	obj2->texture.readTexture("meuble.ppm");
+	obj2->texture.readTexture("wall.ppm");
 	obj2->bump.readTexture("br-normal.ppm");
-	obj2->translate(20, 0, 0);
+	obj2->translate(25, 10, 45);
 	listObjects.push_back(*obj2);
 
-	// Canape
 	myObject3D* obj3 = new myObject3D();
-	obj3->readMesh("canape.obj");
+	obj3->readMesh("sol.obj");
+	obj3->scale(3, 1, 1);
 	obj3->computeNormals();
-	obj3->computeSphereTextureCoordinates();
+	obj3->computePlaneTextureCoordinates();
 	obj3->computeTangents();
 	obj3->createObjectBuffers();
-	obj3->texture.readTexture("canape.ppm");
+	obj3->texture.readTexture("table.ppm");
 	obj3->bump.readTexture("br-normal.ppm");
-	obj3->translate(32, 0, 0);
+	obj3->rotate(0, 1, 0, 90);
+	obj3->translate(75, 10, 15);
 	listObjects.push_back(*obj3);
 
-	// Bureau
+	// Murs séparateur
 	myObject3D* obj4 = new myObject3D();
-	obj4->readMesh("desk.obj");
+	obj4->readMesh("sol.obj");
+	obj4->scale(2, 1, 1);
 	obj4->computeNormals();
-	obj4->computeSphereTextureCoordinates();
+	obj4->computePlaneTextureCoordinates();
 	obj4->computeTangents();
 	obj4->createObjectBuffers();
-	obj4->texture.readTexture("table.ppm");
+	obj4->texture.readTexture("wall.ppm");
 	obj4->bump.readTexture("br-normal.ppm");
-	//obj4->rotate(0, 1, 0,180);
-	obj4->translate(60, 0, 30);
+	obj4->rotate(0, 1, 0, 90);
+	obj4->translate(25, 10, 5);
 	listObjects.push_back(*obj4);
 
-	// Table
+	// Sol Chambre
 	myObject3D* obj5 = new myObject3D();
-	obj5->readMesh("table.obj");
+	obj5->readMesh("sol.obj");
 	obj5->computeNormals();
-	obj5->computeSphereTextureCoordinates();
+	obj5->computePlaneTextureCoordinates();
 	obj5->computeTangents();
 	obj5->createObjectBuffers();
-	obj5->texture.readTexture("table.ppm");
+	obj5->texture.readTexture("floor.ppm");
 	obj5->bump.readTexture("br-normal.ppm");
-	obj5->rotate(0, 1, 0, 90);
-	obj5->translate(45, 0, 0);
+	obj5->scale(2.5, 3, 1);
+	obj5->rotate(1, 0, 0, 90);
+	obj5->translate(0, 0, 15); //(y,z,x)
 	listObjects.push_back(*obj5);
 
-	// Sol Chambre
+	// Sol salon
 	myObject3D* obj6 = new myObject3D();
-	obj6->readMesh("sol.obj");	
+	obj6->readMesh("sol.obj");
+	obj6->scale(2.5, 3, 1);
 	obj6->computeNormals();
 	obj6->computePlaneTextureCoordinates();
 	obj6->computeTangents();
 	obj6->createObjectBuffers();
-	obj6->texture.readTexture("floor.ppm");
+	obj6->texture.readTexture("table.ppm");
 	obj6->bump.readTexture("br-normal.ppm");
-	obj6->scale(2.5, 3, 1);
 	obj6->rotate(1, 0, 0, 90);
-	obj6->translate(0, 0, 15); //(y,z,x)
+	obj6->translate(50, 0, 15); //(x,z,y)
 	listObjects.push_back(*obj6);
 
-	// Sol salon
+	/*				OBJECTS				*/
+
+	// Lit
 	myObject3D* obj7 = new myObject3D();
-	obj7->readMesh("sol.obj");
-	obj7->scale(2.5, 3, 1);
+	obj7->readMesh("bed.obj");
 	obj7->computeNormals();
-	obj7->computePlaneTextureCoordinates();
+	obj7->computeSphereTextureCoordinates();
 	obj7->computeTangents();
 	obj7->createObjectBuffers();
-	obj7->texture.readTexture("table.ppm");
+	obj7->texture.readTexture("br-diffuse.ppm");
 	obj7->bump.readTexture("br-normal.ppm");
-	obj7->rotate(1, 0, 0, 90);
-	obj7->translate(50, 0, 15); //(x,z,y)
 	listObjects.push_back(*obj7);
 
-	// Murs séparateur
+	//Etagere
 	myObject3D* obj8 = new myObject3D();
-	obj8->readMesh("sol.obj");
-	obj8->scale(2, 1, 1);
+	obj8->readMesh("etagere.obj");
 	obj8->computeNormals();
 	obj8->computePlaneTextureCoordinates();
 	obj8->computeTangents();
 	obj8->createObjectBuffers();
-	obj8->texture.readTexture("wall.ppm");
-	obj8->bump.readTexture("br-normal.ppm");
-	obj8->rotate(0, 1, 0, 90);
-	obj8->translate(25, 10, 5);
+	obj8->texture.readTexture("etagere.ppm");
+	obj8->bump.readTexture("etagereNormal.ppm");
+	obj8->translate(-15, 0, 43);
 	listObjects.push_back(*obj8);
 
-	// 4 murs autours
+	// Etagere deco
 	myObject3D* obj9 = new myObject3D();
-	obj9->readMesh("sol.obj");
-	obj9->scale(3, 1, 1);
+	obj9->readMesh("deco.obj");
 	obj9->computeNormals();
 	obj9->computePlaneTextureCoordinates();
 	obj9->computeTangents();
 	obj9->createObjectBuffers();
-	obj9->texture.readTexture("table.ppm");
-	obj9->bump.readTexture("br-normal.ppm");
-	obj9->rotate(0, 1, 0, 90);
-	obj9->translate(75, 10, 15);
+	obj9->texture.readTexture("etagere.ppm");
+	obj9->bump.readTexture("etagereNormal.ppm");
+	obj9->translate(79, -4, 5);
 	listObjects.push_back(*obj9);
 
+	// Commode
 	myObject3D* obj10 = new myObject3D();
-	obj10->readMesh("sol.obj");
-	obj10->scale(3, 1, 1);
+	obj10->readMesh("meuble.obj");
 	obj10->computeNormals();
-	obj10->computePlaneTextureCoordinates();
+	obj10->computeSphereTextureCoordinates();
 	obj10->computeTangents();
 	obj10->createObjectBuffers();
-	obj10->texture.readTexture("wall.ppm");
+	obj10->texture.readTexture("meuble.ppm");
 	obj10->bump.readTexture("br-normal.ppm");
-	obj10->rotate(0, 1, 0, 90);
-	obj10->translate(-25, 10, 15);
+	obj10->translate(20, 0, 0);
 	listObjects.push_back(*obj10);
 
+	// Canape
 	myObject3D* obj11 = new myObject3D();
-	obj11->readMesh("sol.obj");
-	obj11->scale(5, 1, 1);
+	obj11->readMesh("canape.obj");
 	obj11->computeNormals();
-	obj11->computePlaneTextureCoordinates();
+	obj11->computeSphereTextureCoordinates();
 	obj11->computeTangents();
 	obj11->createObjectBuffers();
-	obj11->texture.readTexture("wall.ppm");
+	obj11->texture.readTexture("canape.ppm");
 	obj11->bump.readTexture("br-normal.ppm");
-	obj11->translate(25, 10, -15);
+	obj11->translate(32, 0, 0);
 	listObjects.push_back(*obj11);
 
+	// Bureau
 	myObject3D* obj12 = new myObject3D();
-	obj12->readMesh("sol.obj");
-	obj12->scale(5, 1, 1);
+	obj12->readMesh("desk.obj");
 	obj12->computeNormals();
-	obj12->computePlaneTextureCoordinates();
+	obj12->computeSphereTextureCoordinates();
 	obj12->computeTangents();
 	obj12->createObjectBuffers();
-	obj12->texture.readTexture("wall.ppm");
+	obj12->texture.readTexture("table.ppm");
 	obj12->bump.readTexture("br-normal.ppm");
-	obj12->translate(25, 10, 45);
+	obj12->translate(60, 0, 30);
 	listObjects.push_back(*obj12);
 
-	//Etagere
+	// Table
 	myObject3D* obj13 = new myObject3D();
-	obj13->readMesh("etagere.obj");
+	obj13->readMesh("table.obj");
 	obj13->computeNormals();
-	obj13->computePlaneTextureCoordinates();
+	obj13->computeSphereTextureCoordinates();
 	obj13->computeTangents();
 	obj13->createObjectBuffers();
-	obj13->texture.readTexture("etagere.ppm");
-	obj13->bump.readTexture("etagereNormal.ppm");
-	obj13->translate(-15, 0, 43);
+	obj13->texture.readTexture("table.ppm");
+	obj13->bump.readTexture("br-normal.ppm");
+	//obj13->rotate(0, 1, 0, 90);
+	obj13->translate(45, 0, 0);
 	listObjects.push_back(*obj13);
 
-	// Etagere deco
-	myObject3D* obj14 = new myObject3D();
-	obj14->readMesh("deco.obj");
-	obj14->computeNormals();
-	obj14->computePlaneTextureCoordinates();
-	obj14->computeTangents();
-	obj14->createObjectBuffers();
-	obj14->texture.readTexture("etagere.ppm");
-	obj14->bump.readTexture("etagereNormal.ppm");
-	obj14->translate(79, -4, 5);
-	listObjects.push_back(*obj14);
+	
 
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
