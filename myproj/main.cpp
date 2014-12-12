@@ -137,13 +137,12 @@ void keyboard(unsigned char key, int x, int y) {
 	glutPostRedisplay();
 }
 
-bool isCollision(){
+bool isCollision(myVector3D delta){
 	bool collision = true;
+	myPoint3D tmp = camera_eye + delta;
 	//for (int i = 0; i < listObjects.size(); i++){
-		if (camera_eye.X >= -24 &&
-			camera_eye.X <= 73 &&
-			camera_eye.Z >= -12  &&
-			camera_eye.Z <= 43){
+		if (tmp.X >= -24 && tmp.X <= 73 &&
+			tmp.Z >= -12  && tmp.Z <= 43){
 			collision = false;
 			cout << "Bloque dans la piece";
 		}
@@ -161,16 +160,10 @@ bool isCollision(){
 void keyboard2(int key, int x, int y) {
 	switch(key) {
 	case GLUT_KEY_UP:
-		camera_eye += camera_forward*1.1;
-		if (isCollision()){
-			camera_eye += -camera_forward*1.1;
-		}
+		camera_eye = isCollision(camera_forward*1.1) ? camera_eye : camera_eye + camera_forward*1.1;
 		break;
 	case GLUT_KEY_DOWN:
-		camera_eye += -camera_forward*1.1;
-		if (isCollision()){
-			camera_eye += camera_forward*1.1;
-		}
+		camera_eye = isCollision(-camera_forward*1.1) ? camera_eye : camera_eye + -camera_forward*1.1;
 		break;
 	case GLUT_KEY_LEFT:
 		camera_up.normalize();
