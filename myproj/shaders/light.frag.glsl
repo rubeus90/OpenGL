@@ -87,6 +87,9 @@ void main (void)
 	mypos_toeyepos = normalize(out_m * mypos_toeyepos);
 
 	vec3 reflected_ray;
+	vec3 reflected_ray2;
+	vec3 reflected_ray3;
+	vec3 reflected_ray4;
 
 	//Lumiere ambiante
 	gl_FragColor += kd * 0.4;
@@ -100,9 +103,18 @@ void main (void)
 			case 0:  // Point light
 				//Diffuse
 				gl_FragColor += mylight_color * kd * max(  dot(normal, normalize(lightpos - mypos)), 0.0);
+				gl_FragColor += mylight_color * kd * max(  dot(normal, normalize(lightpos2 - mypos)), 0.0);
+				gl_FragColor += mylight_color * kd * max(  dot(normal, normalize(lightpos3 - mypos)), 0.0);
+				gl_FragColor += mylight_color * kd * max(  dot(normal, normalize(lightpos4 - mypos)), 0.0);
 				//Specular
 				reflected_ray = normalize(reflect(mypos-lightpos, normal));
-				gl_FragColor += mylight_color * ks * pow(max(dot(reflected_ray, normalize(eyepos-mypos)),0.0),20);				
+				reflected_ray2 = normalize(reflect(mypos-lightpos2, normal));
+				reflected_ray3 = normalize(reflect(mypos-lightpos3, normal));
+				reflected_ray4 = normalize(reflect(mypos-lightpos4, normal));
+				gl_FragColor += mylight_color * ks * pow(max(dot(reflected_ray, normalize(eyepos-mypos)),0.0),20);	
+				gl_FragColor += mylight_color * ks * pow(max(dot(reflected_ray2, normalize(eyepos-mypos)),0.0),20);	
+				gl_FragColor += mylight_color * ks * pow(max(dot(reflected_ray3, normalize(eyepos-mypos)),0.0),20);	
+				gl_FragColor += mylight_color * ks * pow(max(dot(reflected_ray4, normalize(eyepos-mypos)),0.0),20);				
 				break;
 
 			case 1: // Directional light
@@ -117,9 +129,19 @@ void main (void)
 				//Diffuse
 				vec4 color = mylight_color * pow(max(dot(normalize(mylight_direction), normalize(mypos - mylight_position.xyz/mylight_position.w)),0),1);
 				gl_FragColor += color * kd * max(  dot(normal, normalize(lightpos - mypos)), 0.0);
+				gl_FragColor += color * kd * max(  dot(normal, normalize(lightpos2 - mypos)), 0.0);
+				gl_FragColor += color * kd * max(  dot(normal, normalize(lightpos3 - mypos)), 0.0);
+				gl_FragColor += color * kd * max(  dot(normal, normalize(lightpos4 - mypos)), 0.0);
+				
 				//Specular
 				reflected_ray = normalize(reflect(mypos-lightpos, normal));
-				gl_FragColor += color * ks * pow(max(dot(reflected_ray, normalize(eyepos-mypos)),0),60);				
+				reflected_ray2 = normalize(reflect(mypos-lightpos2, normal));
+				reflected_ray3 = normalize(reflect(mypos-lightpos3, normal));
+				reflected_ray4 = normalize(reflect(mypos-lightpos4, normal));
+				gl_FragColor += color * ks * pow(max(dot(reflected_ray, normalize(eyepos-mypos)),0),60);
+				gl_FragColor += color * ks * pow(max(dot(reflected_ray2, normalize(eyepos-mypos)),0),60);	
+				gl_FragColor += color * ks * pow(max(dot(reflected_ray3, normalize(eyepos-mypos)),0),60);	
+				gl_FragColor += color * ks * pow(max(dot(reflected_ray4, normalize(eyepos-mypos)),0),60);				
 				break;
 		}
 	}
