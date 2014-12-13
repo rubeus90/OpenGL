@@ -23,6 +23,8 @@ public:
 
 	myTexture texture;
 	myTexture bump;
+	myTexture cubeMap;
+
 	glm::mat4 model_matrix;
 
 	int xmin, xmax, ymin, ymax, zmin, zmax;
@@ -161,7 +163,6 @@ public:
 			x = vertices[3 * i]; y = vertices[3 * i + 1]; z = vertices[3 * i + 2];
 
 			textures[2 * i +1 ] = atan2(sqrt(x*x + y*y),z) / (PI);
-			//textures[2 * i] = acos(z / sqrt(x*x + y*y + z*z)) / (PI);
 			if ( y>=0.0f )     textures[2*i] = atan2(  y,  x ) / (2*PI) ;
 			else if ( y<0.0f )  textures[2*i] = (2*PI + atan2(  y,  x )) / (2*PI) ;
 		}
@@ -242,6 +243,9 @@ public:
 		glActiveTexture(GL_TEXTURE2);
 		glBindTexture(GL_TEXTURE_2D, bump.texName);
 
+		glActiveTexture(GL_TEXTURE3);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMap.texName);
+
 		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 	}
 
@@ -259,6 +263,8 @@ public:
 	void translate(double x, double y, double z){
 		glm::mat4 tmp = glm::translate(glm::vec3(x, y, z));
 		model_matrix = tmp * model_matrix;
+
+		// Seems Good
 		xmin += x; xmax += x;
 		ymin += y; ymax += y;
 		zmin += z; zmax += z;
@@ -267,11 +273,80 @@ public:
 	void rotate(double axis_x, double axis_y, double axis_z, double angle){
 		glm::mat4 tmp = glm::rotate((float)angle, glm::vec3(axis_x, axis_y, axis_z));
 		model_matrix = tmp * model_matrix;
+
+		// Let's go for a dirty code : If you try to copy or understand the following code, good luck !
+		vector<myVector3D> listPoint;
+
+		// 8 points 
+		myVector3D point1 = myVector3D(xmin, ymin, zmin);
+		myVector3D point2 = myVector3D(xmin, ymin, zmax);
+		myVector3D point3 = myVector3D(xmax, ymin, zmin);
+		myVector3D point4 = myVector3D(xmax, ymin, zmax);
+		myVector3D point5 = myVector3D(xmin, ymax, zmin);
+		myVector3D point6 = myVector3D(xmin, ymax, zmax);
+		myVector3D point7 = myVector3D(xmax, ymax, zmin);
+		myVector3D point8 = myVector3D(xmax, ymax, zmax);
+		listPoint.push_back(point1);
+		listPoint.push_back(point2);
+		listPoint.push_back(point3);
+		listPoint.push_back(point4);
+		listPoint.push_back(point5);
+		listPoint.push_back(point6);
+		listPoint.push_back(point7);
+		listPoint.push_back(point8);
+
+		angle = degrestoradian(angle); // To radian
+		myVector3D axe = myVector3D(axis_x, axis_y, axis_z);
+		int size = listPoint.size();
+		int i;
+
+		// Rotate points
+		for (i = 0; i < size; i++){
+			listPoint[i].rotate(axe, angle);
+		}
+
+		// New search xmin,xmax, ymin,ymax, zmin and zmax
+		xmin = listPoint[0].dX;
+		xmax = listPoint[0].dX;
+		ymin = listPoint[0].dY;
+		ymax = listPoint[0].dY;
+		zmin = listPoint[0].dZ;
+		zmax = listPoint[0].dZ;
+
+		for (i = 0; i < size; i++){
+					
+			if (listPoint[i].dX < xmin){
+				xmin = listPoint[i].dX;
+			}
+			if (listPoint[i].dX > xmax){
+				xmax = listPoint[i].dX;
+			}
+
+			if (listPoint[i].dY < ymin){
+				ymin = listPoint[i].dY;
+			}
+			if (listPoint[i].dY > ymax){
+				ymax = listPoint[i].dY;
+			}
+
+			if (listPoint[i].dZ < zmin){
+				zmin = listPoint[i].dZ;
+			}
+			if (listPoint[i].dZ > zmax){
+				zmax = listPoint[i].dZ;
+			}
+		}		
+	}
+
+	int degrestoradian(int angle){
+		return tan(angle * 3.14159265 / 180);
 	}
 
 	void scale(double x, double y, double z){
 		glm::mat4 tmp = glm::scale(glm::vec3(x, y, z));
 		model_matrix = tmp * model_matrix;
+
+		// Good
 		xmin = (xmax + xmin) / 2 - (xmax - xmin) / 2 * x; xmax = (xmax + xmin) / 2 + (xmax - xmin) / 2 * x;
 		ymin = (ymax + ymin) / 2 - (ymax - ymin) / 2 * y; ymax = (ymax + ymin) / 2 + (ymax - ymin) / 2 * y;
 		zmin = (zmax + zmin) / 2 - (zmax - zmin) / 2 * z; zmax = (zmax + zmin) / 2 + (zmax - zmin) / 2 * z;

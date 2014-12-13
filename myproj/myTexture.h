@@ -8,5 +8,7 @@ public:
 	GLuint texName;
 
 	bool readTexture(char *filename);
+	GLubyte* myTexture::readImage(char* filename);
+	void readCubeMapping();
 };
 
