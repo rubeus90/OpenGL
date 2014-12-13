@@ -42,6 +42,9 @@ GLuint normal_matrix_loc;
 GLuint buffers[6];
 
 GLuint mylight_position_loc;
+GLuint mylight2_position_loc;
+GLuint mylight3_position_loc;
+GLuint mylight4_position_loc;
 GLuint mylight_color_loc;
 GLuint mylight_direction_loc;
 GLuint mylight_type_loc;
@@ -209,46 +212,75 @@ void display()
 	glm::mat3 normal_matrix = glm::transpose(glm::inverse(glm::mat3(view_matrix)));
 	glUniformMatrix3fv(normal_matrix_loc, 1, GL_FALSE, &normal_matrix[0][0]);
 	
-	//Light
-	glm::vec4 light_position = glm::vec4(0, 5, 5, 1);
+	/*						LIGHT							*/		
+
+	//Light 1
+	glm::vec4 light_position = glm::vec4(0, -5, 0, 1);
 	glUniform4fv(mylight_position_loc, 1, &light_position[0]);
+
+	//Light 2
+	glm::vec4 light2_position = glm::vec4(10, -5, 0, 1);
+	glUniform4fv(mylight2_position_loc, 1, &light2_position[0]);
+
+	//Light 3
+	glm::vec4 light3_position = glm::vec4(30, -5, 0, 1);
+	glUniform4fv(mylight3_position_loc, 1, &light3_position[0]);
+
+	//Light 4
+	glm::vec4 light4_position = glm::vec4(40, -5, 0, 1);
+	glUniform4fv(mylight4_position_loc, 1, &light4_position[0]);
 	
+	// Color light -- White
 	glm::vec4 light_color = glm::vec4(1, 1, 1, 0);
 	glUniform4fv(mylight_color_loc, 1, &light_color[0]);
 
+	// Light Direction
 	glm::vec3 light_direction = glm::vec3(-2, -1, -1);
 	glUniform3fv(mylight_direction_loc, 1, &light_direction[0]);
 
+	// Style light
 	glUniform1i(mylight_type_loc, light_type);
+
 
 	//glUniform1i(tex_loc, 1);
 
-	//Draw object
+	/*						Draw object						*/
 	glUniform1i(renderStyle_loc, 2);
 	for (int i = 0; i < listObjects.size(); i++){
-		listObjects[i].displayObject(shaderprogram1, view_matrix);
+		if (i != 7){
+			listObjects[i].displayObject(shaderprogram1, view_matrix);
+		}	
 	}
-	/*obj1->displayObject(shaderprogram1, view_matrix);
-	obj2->displayObject(shaderprogram1, view_matrix);
-	obj3->displayObject(shaderprogram1, view_matrix);
-	obj4->displayObject(shaderprogram1, view_matrix);
-	obj5->displayObject(shaderprogram1, view_matrix);
-	obj6->displayObject(shaderprogram1, view_matrix);
-	obj7->displayObject(shaderprogram1, view_matrix);
-	obj8->displayObject(shaderprogram1, view_matrix);
-	obj9->displayObject(shaderprogram1, view_matrix);
-	obj10->displayObject(shaderprogram1, view_matrix);
-	obj11->displayObject(shaderprogram1, view_matrix);
-	obj12->displayObject(shaderprogram1, view_matrix);
-	obj13->displayObject(shaderprogram1, view_matrix);
-	obj14->displayObject(shaderprogram1, view_matrix);*/
 	
-	//Draw the light
+	/*						Draw Light						*/
+	//Draw the light 1
 	glUniform1i(renderStyle_loc, 4);
 	glPointSize(12.0);
 	glBegin(GL_POINTS);
 	glVertex3f(light_position[0], light_position[1], light_position[2]);
 	glEnd();
+
+	//Draw the light 2
+	glUniform1i(renderStyle_loc, 4);
+	glPointSize(12.0);
+	glBegin(GL_POINTS);
+	glVertex3f(light2_position[0], light2_position[1], light2_position[2]);
+	glEnd();
+
+	//Draw the light 3
+	glUniform1i(renderStyle_loc, 4);
+	glPointSize(12.0);
+	glBegin(GL_POINTS);
+	glVertex3f(light3_position[0], light3_position[1], light3_position[2]);
+	glEnd();
+
+	//Draw the light 4
+	glUniform1i(renderStyle_loc, 4);
+	glPointSize(12.0);
+	glBegin(GL_POINTS);
+	glVertex3f(light4_position[0], light4_position[1], light4_position[2]);
+	glEnd();
+
 	/*glBegin(GL_LINES);
 	glVertex3f(light_position[0], light_position[1], light_position[2]);
 	glVertex3f(light_position[0] + light_direction[0], light_position[1] + light_direction[2], light_position[2] + light_direction[2] );
@@ -480,6 +512,69 @@ void init()
 	obj14->bump.readTexture("br-normal.ppm");
 	listObjects.push_back(*obj14);
 
+	// Commode 2
+	myObject3D* obj15 = new myObject3D();
+	obj15->readMesh("meuble.obj");
+	obj15->computeNormals();
+	obj15->computeSphereTextureCoordinates();
+	obj15->computeTangents();
+	obj15->createObjectBuffers();
+	obj15->texture.readTexture("meuble.ppm");
+	obj15->bump.readTexture("br-normal.ppm");
+	obj15->translate(20, 0, 18);
+	listObjects.push_back(*obj15);
+
+	// Cube mapping
+	myObject3D* obj16 = new myObject3D();
+	obj16->readMesh("cubemapping.obj");
+	obj16->computeNormals();
+	obj16->computeSphereTextureCoordinates();
+	obj16->computeTangents();
+	obj16->createObjectBuffers();
+	//obj16->cubeMap.readCubeMapping();
+	obj16->translate(39, 5, -3);
+	listObjects.push_back(*obj16);
+
+	// Lamp
+	myObject3D* obj17 = new myObject3D();
+	obj17->readMesh("lamp.obj");
+	obj17->computeNormals();
+	obj17->computeSphereTextureCoordinates();
+	obj17->computeTangents();
+	obj17->createObjectBuffers();
+	obj17->texture.readTexture("roof.ppm");
+	obj17->translate(30, 0, 20);
+	listObjects.push_back(*obj17);
+
+	myObject3D* obj18= new myObject3D();
+	obj18->readMesh("lamp.obj");
+	obj18->computeNormals();
+	obj18->computeSphereTextureCoordinates();
+	obj18->computeTangents();
+	obj18->createObjectBuffers();
+	obj18->texture.readTexture("roof.ppm");
+	obj18->translate(-20, 0, 0);
+	listObjects.push_back(*obj18);
+
+	myObject3D* obj19 = new myObject3D();
+	obj19->readMesh("lamp2.obj");
+	obj19->computeNormals();
+	obj19->computeSphereTextureCoordinates();
+	obj19->computeTangents();
+	obj19->createObjectBuffers();
+	obj19->texture.readTexture("roof.ppm");
+	obj19->translate(21, 6.3, 15);
+	listObjects.push_back(*obj19);
+
+	myObject3D* obj20 = new myObject3D();
+	obj20->readMesh("lamp2.obj");
+	obj20->computeNormals();
+	obj20->computeSphereTextureCoordinates();
+	obj20->computeTangents();
+	obj20->createObjectBuffers();
+	obj20->texture.readTexture("roof.ppm");
+	obj20->translate(70, 7, 40);
+	listObjects.push_back(*obj20);
 
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
 	glUniform1i(glGetUniformLocation(shaderprogram1, "bump"), 2);
