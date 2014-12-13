@@ -5,6 +5,9 @@ uniform mat4 myview_matrix;
 uniform mat3 mynormal_matrix;
 
 uniform vec4 mylight_position;
+uniform vec4 mylight2_position;
+uniform vec4 mylight3_position;
+uniform vec4 mylight4_position;
 uniform vec4 mylight_color;
 uniform vec3 mylight_direction;
 uniform int mylight_type;
@@ -42,11 +45,26 @@ void main (void)
 	vec3 eyepos = vec3(0,0,0);
 	eyepos = out_m * eyepos;
 
-	//Light position
+	//Light position - 1
 	//vec4 lightpos_ = vec4(2,0,0,1);
 	vec4 lightpos_ = myview_matrix * mylight_position;	
 	vec3 lightpos = lightpos_.xyz/lightpos_.w;
 	lightpos = out_m * lightpos;
+
+	//Light position - 2
+	vec4 lightpos2_ = myview_matrix * mylight2_position;	
+	vec3 lightpos2 = lightpos2_.xyz/lightpos2_.w;
+	lightpos2 = out_m * lightpos2;
+
+	//Light position - 3
+	vec4 lightpos3_ = myview_matrix * mylight3_position;	
+	vec3 lightpos3 = lightpos3_.xyz/lightpos3_.w;
+	lightpos3 = out_m * lightpos3;
+
+	//Light position - 4
+	vec4 lightpos4_ = myview_matrix * mylight4_position;	
+	vec3 lightpos4 = lightpos4_.xyz/lightpos4_.w;
+	lightpos4 = out_m * lightpos4;
 	
 	//Kd
 	vec4 kd = vec4(1,0,0,0); //without texture
@@ -71,7 +89,7 @@ void main (void)
 	vec3 reflected_ray;
 
 	//Lumiere ambiante
-	gl_FragColor += kd * 0.3;
+	gl_FragColor += kd * 0.4;
 
 	//Silhouette
 //	if(dot(normal, normalize(eyepos-mypos)) < 0.2  && myrenderStyle == 0){
