@@ -210,20 +210,20 @@ void display()
 	
 	/*						LIGHT							*/		
 
-	//Light 1
-	glm::vec4 light_position = glm::vec4(0, -5, 0, 1);
+	//Light 1 --Lampe sur le bureau
+	glm::vec4 light_position = glm::vec4(0, 5, 0, 1);
 	glUniform4fv(mylight_position_loc, 1, &light_position[0]);
 
 	//Light 2
-	glm::vec4 light2_position = glm::vec4(10, -5, 0, 1);
+	glm::vec4 light2_position = glm::vec4(-40, 17, -20, 1);
 	glUniform4fv(mylight2_position_loc, 1, &light2_position[0]);
 
 	//Light 3
-	glm::vec4 light3_position = glm::vec4(30, -5, 0, 1);
+	glm::vec4 light3_position = glm::vec4(-49, 5, -25, 1);
 	glUniform4fv(mylight3_position_loc, 1, &light3_position[0]);
 
 	//Light 4
-	glm::vec4 light4_position = glm::vec4(40, -5, 0, 1);
+	glm::vec4 light4_position = glm::vec4(-90, 17, -40, 1);
 	glUniform4fv(mylight4_position_loc, 1, &light4_position[0]);
 	
 	// Color light -- White
@@ -246,7 +246,7 @@ void display()
 			listObjects[i].displayObject(shaderprogram1, view_matrix);
 		}	
 	}
-	
+
 	/*						Draw Light						*/
 	//Draw the light 1
 	glUniform1i(renderStyle_loc, 4);
