@@ -73,7 +73,7 @@ void myTexture::readCubeMapping(){
 	char filename[6];
 	GLubyte* cubeFace;
 
-	glEnable(GL_TEXTURE_CUBE_MAP);
+	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 	glGenTextures(1, &texName);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, texName);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -89,6 +89,6 @@ void myTexture::readCubeMapping(){
 		cubeFace = readImage(filename);
 
 		cout << width << "  " << height << endl;
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, 499, 499, 0, GL_RGBA, GL_UNSIGNED_BYTE, cubeFace);
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, 128, 128, 0, GL_RGBA, GL_UNSIGNED_BYTE, cubeFace);
 	}
 }

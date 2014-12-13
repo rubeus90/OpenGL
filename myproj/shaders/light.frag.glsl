@@ -53,7 +53,7 @@ void main (void)
 	
 	//Cube mapping
 	vec3 reflection = normalize(reflect(eyepos-mypos, normal_without_bump));
-	reflection = vec3 (inverse (myview_matrix) * vec4 (reflection, 0.0));
+	reflection = vec3 (inverse(myview_matrix) * vec4 (reflection, 0.0));
 	kd = textureCube(cubeMap, reflection); 
 
 	//Texture
