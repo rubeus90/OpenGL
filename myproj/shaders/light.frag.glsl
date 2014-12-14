@@ -13,6 +13,7 @@ uniform mat4 mymodel_matrix;
 uniform sampler2D tex;
 uniform sampler2D bump;
 uniform samplerCube cubeMap; 
+uniform sampler2D mirror;
 
 in vec4 vertex_to_fragment;
 in vec3 normal_to_fragment;
@@ -58,6 +59,9 @@ void main (void)
 
 	//Texture
 	kd += texture2D(tex, texture_to_fragment.st); 
+
+	//Reflection
+	kd += texture2D(mirror, texture_to_fragment.st); 
 
 	vec4 ks = vec4(1,1,1,0);
 

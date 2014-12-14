@@ -24,6 +24,7 @@ public:
 	myTexture texture;
 	myTexture bump;
 	myTexture cubeMap;
+	myTexture mirror;
 
 	glm::mat4 model_matrix;
 
@@ -237,6 +238,7 @@ public:
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
 
+		//Textures
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, texture.texName);
 
@@ -246,6 +248,10 @@ public:
 		glActiveTexture(GL_TEXTURE3);
 		glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMap.texName);
 
+		glActiveTexture(GL_TEXTURE4);
+		glBindTexture(GL_TEXTURE_2D, mirror.texName);
+
+		//Draw
 		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 	}
 

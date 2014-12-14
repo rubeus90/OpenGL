@@ -41,7 +41,7 @@ GLuint view_matrix_loc;
 GLuint normal_matrix_loc;
 GLuint buffers[6];
 
-GLuint color_tex;
+GLuint fboId;
 
 GLuint mylight_position_loc;
 GLuint mylight2_position_loc;
@@ -190,44 +190,14 @@ void reshape(int width, int height){
 void drawObjects(glm::mat4 view_matrix){
 	glUniform1i(renderStyle_loc, 2);
 	for (int i = 0; i < listObjects.size(); i++){
-		listObjects[i].displayObject(shaderprogram1, view_matrix);
+		if (i != 7){
+			listObjects[i].displayObject(shaderprogram1, view_matrix);
+		}	
 	}
 }
 
 //Frame buffer object : capture the scene into a texture
 void fbo(glm::mat4 view_matrix){
-	GLuint fboId;
-	glGenFramebuffers(1, &fboId);
-	//Bind the FBO
-	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
-
-	//Generate and set up the texture to store the color values for the FBO
-	glGenTextures(1, &color_tex);
-	glBindTexture(GL_TEXTURE_2D, color_tex);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Glut_w, Glut_h, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
-
-	//Generate and set up the texture to store the depth values for the FBO
-	GLuint depth_tex;
-	glGenTextures(1, &depth_tex);
-	glBindTexture(GL_TEXTURE_2D, depth_tex);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_INTENSITY);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, Glut_w, Glut_h, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
-
-	// attach the color texture to FBO
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, color_tex, 0);
-	// attach the depth texture to FBO
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depth_tex, 0);
-
 	//to use the FrameBufferObject to capture a snapshot of the scene, first bind it and then draw the scene you want to capture, and then unbind it
 	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
 	drawObjects(view_matrix);
@@ -290,13 +260,15 @@ void display()
 
 
 
-	/*						Draw object						*/
-	glUniform1i(renderStyle_loc, 2);
-	for (int i = 0; i < listObjects.size(); i++){
-		if (i != 7){
-			listObjects[i].displayObject(shaderprogram1, view_matrix);
-		}	
-	}
+	///*						Draw object						*/
+	//glUniform1i(renderStyle_loc, 2);
+	//for (int i = 0; i < listObjects.size(); i++){
+	//	if (i != 7){
+	//		listObjects[i].displayObject(shaderprogram1, view_matrix);
+	//	}	
+	//}
+
+	fbo(view_matrix);
 	
 	/*						Draw Light						*/
 	//Draw the light 1
@@ -357,8 +329,9 @@ void init()
 	obj0->computePlaneTextureCoordinates();
 	obj0->computeTangents();
 	obj0->createObjectBuffers();
-	obj0->texture.readTexture("murs.ppm");
-	obj0->bump.readTexture("wall-normal.ppm");
+	//obj0->texture.readTexture("murs.ppm");
+	//obj0->bump.readTexture("wall-normal.ppm");
+	obj0->mirror.createReflection(&fboId, Glut_w, Glut_h);
 	obj0->rotate(0, 1, 0, 90);
 	obj0->translate(-25, 10, 15);
 	listObjects.push_back(*obj0);
@@ -608,6 +581,7 @@ void init()
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
 	glUniform1i(glGetUniformLocation(shaderprogram1, "bump"), 2);
 	glUniform1i(glGetUniformLocation(shaderprogram1, "cubeMap"), 3);
+	glUniform1i(glGetUniformLocation(shaderprogram1, "mirror"), 4);
 
 	glClearColor(0.4, 0.4, 0.4, 0);
 }
