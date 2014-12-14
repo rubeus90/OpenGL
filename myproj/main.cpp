@@ -41,6 +41,8 @@ GLuint view_matrix_loc;
 GLuint normal_matrix_loc;
 GLuint buffers[6];
 
+GLuint fboId;
+
 GLuint mylight_position_loc;
 GLuint mylight2_position_loc;
 GLuint mylight3_position_loc;
@@ -184,6 +186,25 @@ void reshape(int width, int height){
 	glViewport(0, 0, Glut_w, Glut_h);
 }
 
+//Draw all the objects of the scene
+void drawObjects(glm::mat4 view_matrix){
+	glUniform1i(renderStyle_loc, 2);
+	for (int i = 0; i < listObjects.size(); i++){
+		if (i != 7){
+			listObjects[i].displayObject(shaderprogram1, view_matrix);
+		}	
+	}
+}
+
+//Frame buffer object : capture the scene into a texture
+void fbo(glm::mat4 view_matrix){
+	//to use the FrameBufferObject to capture a snapshot of the scene, first bind it and then draw the scene you want to capture, and then unbind it
+	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
+	drawObjects(view_matrix);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	drawObjects(view_matrix);
+}
+
 //This function is called to display objects on screen.
 void display() 
 {
@@ -198,7 +219,7 @@ void display()
 		glm::perspective(fovy, Glut_w/(float)Glut_h, zNear, zFar);
 	glUniformMatrix4fv(projection_matrix_loc, 1, GL_FALSE, &projection_matrix[0][0]);
 
-	glm::mat4 view_matrix = 
+	glm::mat4 view_matrix =
 		glm::lookAt(glm::vec3(camera_eye.X, camera_eye.Y, camera_eye.Z), 
 					glm::vec3(camera_eye.X + camera_forward.dX, camera_eye.Y + camera_forward.dY, camera_eye.Z + camera_forward.dZ), 
 					glm::vec3(camera_up.dX, camera_up.dY, camera_up.dZ));
@@ -237,13 +258,21 @@ void display()
 	// Style light
 	glUniform1i(mylight_type_loc, light_type);
 
-	//glUniform1i(tex_loc, 1);
-
 	/*						Draw object						*/
 	glUniform1i(renderStyle_loc, 2);
 	for (int i = 0; i < listObjects.size(); i++){
 			listObjects[i].displayObject(shaderprogram1, view_matrix);
 	}
+
+	///*						Draw object						*/
+	//glUniform1i(renderStyle_loc, 2);
+	//for (int i = 0; i < listObjects.size(); i++){
+	//	if (i != 7){
+	//		listObjects[i].displayObject(shaderprogram1, view_matrix);
+	//	}	
+	//}
+
+	fbo(view_matrix);
 	
 	/*						Draw Light						*/
 	//Draw the light 1
@@ -273,23 +302,6 @@ void display()
 	glBegin(GL_POINTS);
 	glVertex3f(light4_position[0], light4_position[1], light4_position[2]);
 	glEnd();
-
-	/*glBegin(GL_LINES);
-	glVertex3f(light_position[0], light_position[1], light_position[2]);
-	glVertex3f(light_position[0] + light_direction[0], light_position[1] + light_direction[2], light_position[2] + light_direction[2] );
-	glEnd();*/
-
-
-	//obj1 -> drawNormals();
-	/*{
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
-
-	glDrawElements(GL_TRIANGLES, 12 * 3, GL_UNSIGNED_INT, 0);
-	}*/
 
 	glFlush();
 }
@@ -321,8 +333,9 @@ void init()
 	obj0->computePlaneTextureCoordinates();
 	obj0->computeTangents();
 	obj0->createObjectBuffers();
-	obj0->texture.readTexture("murs.ppm");
-	obj0->bump.readTexture("wall-normal.ppm");
+	//obj0->texture.readTexture("murs.ppm");
+	//obj0->bump.readTexture("wall-normal.ppm");
+	obj0->mirror.createReflection(&fboId, Glut_w, Glut_h);
 	obj0->rotate(0, 1, 0, 90);
 	obj0->translate(-25, 10, 15);
 	listObjects.push_back(*obj0);
@@ -572,6 +585,7 @@ void init()
 	glUniform1i(glGetUniformLocation(shaderprogram1, "tex"), 1);	
 	glUniform1i(glGetUniformLocation(shaderprogram1, "bump"), 2);
 	glUniform1i(glGetUniformLocation(shaderprogram1, "cubeMap"), 3);
+	glUniform1i(glGetUniformLocation(shaderprogram1, "mirror"), 4);
 
 	glClearColor(0.4, 0.4, 0.4, 0);
 }
