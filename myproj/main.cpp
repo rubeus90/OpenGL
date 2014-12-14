@@ -242,9 +242,7 @@ void display()
 	/*						Draw object						*/
 	glUniform1i(renderStyle_loc, 2);
 	for (int i = 0; i < listObjects.size(); i++){
-		if (i != 7){
 			listObjects[i].displayObject(shaderprogram1, view_matrix);
-		}	
 	}
 	
 	/*						Draw Light						*/
@@ -467,8 +465,8 @@ void init()
 	obj11->computeSphereTextureCoordinates();
 	obj11->computeTangents();
 	obj11->createObjectBuffers();
-	obj11->texture.readTexture("canape.ppm");
-	obj11->bump.readTexture("br-normal.ppm");
+	obj11->texture.readTexture("can.ppm");
+	obj11->bump.readTexture("can-normal.ppm");
 	obj11->translate(32, 0, 0);
 	listObjects.push_back(*obj11);
 
@@ -503,7 +501,7 @@ void init()
 	obj14->computeSphereTextureCoordinates();
 	obj14->computeTangents();
 	obj14->createObjectBuffers();
-	obj14->texture.readTexture("br-diffuse.ppm");
+	obj14->texture.readTexture("bed.ppm");
 	obj14->bump.readTexture("br-normal.ppm");
 	listObjects.push_back(*obj14);
 
