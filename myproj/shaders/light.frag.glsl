@@ -46,25 +46,24 @@ void main (void)
 	eyepos = out_m * eyepos;
 
 	//Light position - 1
-	//vec4 lightpos_ = vec4(2,0,0,1);
 	vec4 lightpos_ = myview_matrix * mylight_position;	
 	vec3 lightpos = lightpos_.xyz/lightpos_.w;
-	lightpos = out_m * lightpos;
+	//lightpos = out_m * lightpos;
 
 	//Light position - 2
 	vec4 lightpos2_ = myview_matrix * mylight2_position;	
 	vec3 lightpos2 = lightpos2_.xyz/lightpos2_.w;
-	lightpos2 = out_m * lightpos2;
+	//lightpos2 = out_m * lightpos2;
 
 	//Light position - 3
 	vec4 lightpos3_ = myview_matrix * mylight3_position;	
 	vec3 lightpos3 = lightpos3_.xyz/lightpos3_.w;
-	lightpos3 = out_m * lightpos3;
+	//lightpos3 = out_m * lightpos3;
 
 	//Light position - 4
 	vec4 lightpos4_ = myview_matrix * mylight4_position;	
 	vec3 lightpos4 = lightpos4_.xyz/lightpos4_.w;
-	lightpos4 = out_m * lightpos4;
+	//lightpos4 = out_m * lightpos4;
 	
 	//Kd
 	vec4 kd = vec4(1,0,0,0); //without texture
@@ -92,7 +91,7 @@ void main (void)
 	vec3 reflected_ray4;
 
 	//Lumiere ambiante
-	gl_FragColor += kd * 0.4;
+	//gl_FragColor += kd * 0.4;
 
 	//Silhouette
 //	if(dot(normal, normalize(eyepos-mypos)) < 0.2  && myrenderStyle == 0){
@@ -134,14 +133,14 @@ void main (void)
 				gl_FragColor += color * kd * max(  dot(normal, normalize(lightpos4 - mypos)), 0.0);
 				
 				//Specular
-				reflected_ray = normalize(reflect(mypos-lightpos, normal));
-				reflected_ray2 = normalize(reflect(mypos-lightpos2, normal));
-				reflected_ray3 = normalize(reflect(mypos-lightpos3, normal));
-				reflected_ray4 = normalize(reflect(mypos-lightpos4, normal));
-				gl_FragColor += color * ks * pow(max(dot(reflected_ray, normalize(eyepos-mypos)),0),60);
-				gl_FragColor += color * ks * pow(max(dot(reflected_ray2, normalize(eyepos-mypos)),0),60);	
-				gl_FragColor += color * ks * pow(max(dot(reflected_ray3, normalize(eyepos-mypos)),0),60);	
-				gl_FragColor += color * ks * pow(max(dot(reflected_ray4, normalize(eyepos-mypos)),0),60);				
+				//reflected_ray = normalize(reflect(mypos-lightpos, normal));
+				//reflected_ray2 = normalize(reflect(mypos-lightpos2, normal));
+				//reflected_ray3 = normalize(reflect(mypos-lightpos3, normal));
+				//reflected_ray4 = normalize(reflect(mypos-lightpos4, normal));
+				//gl_FragColor += color * ks * pow(max(dot(reflected_ray, normalize(eyepos-mypos)),0),60);
+				//gl_FragColor += color * ks * pow(max(dot(reflected_ray2, normalize(eyepos-mypos)),0),60);	
+				//gl_FragColor += color * ks * pow(max(dot(reflected_ray3, normalize(eyepos-mypos)),0),60);	
+				//gl_FragColor += color * ks * pow(max(dot(reflected_ray4, normalize(eyepos-mypos)),0),60);				
 				break;
 		}
 	}

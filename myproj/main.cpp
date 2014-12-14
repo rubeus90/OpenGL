@@ -231,7 +231,7 @@ void display()
 	glUniform4fv(mylight_color_loc, 1, &light_color[0]);
 
 	// Light Direction
-	glm::vec3 light_direction = glm::vec3(-2, -1, -1);
+	glm::vec3 light_direction = glm::vec3(0, 0, 0);
 	glUniform3fv(mylight_direction_loc, 1, &light_direction[0]);
 
 	// Style light
