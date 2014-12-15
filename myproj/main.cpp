@@ -429,7 +429,7 @@ void init()
 	obj11->computeTangents();
 	obj11->createObjectBuffers();
 	obj11->texture.readTexture("can.ppm");
-	obj11->bump.readTexture("can-normal.ppm");
+	//obj11->bump.readTexture("can-normal.ppm");
 	obj11->translate(32, 0, 0);
 	listObjects.push_back(*obj11);
 
@@ -465,7 +465,7 @@ void init()
 	obj14->computeTangents();
 	obj14->createObjectBuffers();
 	obj14->texture.readTexture("bed.ppm");
-	obj14->bump.readTexture("br-normal.ppm");
+	//obj14->bump.readTexture("br-normal.ppm");
 	listObjects.push_back(*obj14);
 
 	// Commode 2

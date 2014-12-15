@@ -33,8 +33,8 @@ void main (void)
 
 	// Normal
 	vec3 normal_without_bump = normalize(mynormal_matrix * normal_to_fragment);
-	//vec3 normal = normalize (2.0 * texture2D(bump, texture_to_fragment.st).rgb - 1.f);
-	vec3 normal = normalize(mynormal_matrix * normal_to_fragment);
+	vec3 normal = normal_without_bump + normalize (2.0 * texture2D(bump, texture_to_fragment.st).rgb - 1.f);
+	//vec3 normal = normalize(mynormal_matrix * normal_to_fragment);
 
 	//Object position
 	vec4 mypos_ = myview_matrix * mymodel_matrix * vertex_to_fragment;
@@ -42,7 +42,7 @@ void main (void)
 
 	//Eye position (origin)
 	vec3 eyepos = vec3(0,0,0);
-	//eyepos = out_m * eyepos;
+	eyepos = out_m * eyepos;
 
 	//Light position
 	vec4 lightpos_ = myview_matrix * mylight1_position;	
@@ -57,7 +57,10 @@ void main (void)
 	lightpos_ = myview_matrix * mylight4_position;	
 	vec3 lightpos4 = lightpos_.xyz/lightpos_.w;
 
-	//lightpos = out_m * lightpos;
+	/*lightpos1 = out_m * lightpos1;
+	lightpos2 = out_m * lightpos2;
+	lightpos3 = out_m * lightpos3;
+	lightpos4 = out_m * lightpos4;*/
 	
 	//Kd
 	vec4 kd = vec4(1,0,0,0); //without texture
@@ -78,7 +81,7 @@ void main (void)
 	vec3 reflected_ray;
 
 	//Lumiere ambiante
-	gl_FragColor = kd * 0.4;
+	gl_FragColor = kd * 0.3;
 
 	/*switch(mylight_type){
 		case 0:  // Point light
