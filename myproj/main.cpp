@@ -43,14 +43,12 @@ GLuint buffers[6];
 
 GLuint fboId;
 
-GLuint mylight_position_loc;
+GLuint mylight1_position_loc;
 GLuint mylight2_position_loc;
 GLuint mylight3_position_loc;
 GLuint mylight4_position_loc;
 GLuint mylight_color_loc;
 GLuint mylight_direction_loc;
-GLuint mylight_type_loc;
-GLuint light_type = 0;
 
 vector<GLfloat> vertices;
 vector<GLfloat> normals;
@@ -131,10 +129,6 @@ void keyboard(unsigned char key, int x, int y) {
 		//camera_eye = myPoint3D(0, 10, 15);
 		camera_up = myVector3D(0, 1, 0);
 		camera_forward = myVector3D(0, -1, -1);
-		break;
-	case 'l':
-		light_type = (light_type + 1) % 3;
-		glUniform1i(mylight_type_loc, light_type);
 		break;
 	}
 	glutPostRedisplay();
@@ -232,19 +226,19 @@ void display()
 	/*						LIGHT							*/		
 
 	//Light 1
-	glm::vec4 light_position = glm::vec4(0, -5, 0, 1);
-	glUniform4fv(mylight_position_loc, 1, &light_position[0]);
+	glm::vec4 light_position = glm::vec4(30, 10, 20, 1);
+	glUniform4fv(mylight1_position_loc, 1, &light_position[0]);
 
 	//Light 2
-	glm::vec4 light2_position = glm::vec4(10, -5, 0, 1);
+	glm::vec4 light2_position = glm::vec4(-20, 10, 0, 1);
 	glUniform4fv(mylight2_position_loc, 1, &light2_position[0]);
 
 	//Light 3
-	glm::vec4 light3_position = glm::vec4(30, -5, 0, 1);
+	glm::vec4 light3_position = glm::vec4(21, 7, 15, 1);
 	glUniform4fv(mylight3_position_loc, 1, &light3_position[0]);
 
 	//Light 4
-	glm::vec4 light4_position = glm::vec4(40, -5, 0, 1);
+	glm::vec4 light4_position = glm::vec4(70, 7, 40, 1);
 	glUniform4fv(mylight4_position_loc, 1, &light4_position[0]);
 	
 	// Color light -- White
@@ -254,54 +248,9 @@ void display()
 	// Light Direction
 	glm::vec3 light_direction = glm::vec3(-2, -1, -1);
 	glUniform3fv(mylight_direction_loc, 1, &light_direction[0]);
-
-	// Style light
-	glUniform1i(mylight_type_loc, light_type);
-
-	/*						Draw object						*/
-	glUniform1i(renderStyle_loc, 2);
-	for (int i = 0; i < listObjects.size(); i++){
-			listObjects[i].displayObject(shaderprogram1, view_matrix);
-	}
-
-	///*						Draw object						*/
-	//glUniform1i(renderStyle_loc, 2);
-	//for (int i = 0; i < listObjects.size(); i++){
-	//	if (i != 7){
-	//		listObjects[i].displayObject(shaderprogram1, view_matrix);
-	//	}	
-	//}
-
-	fbo(view_matrix);
 	
-	/*						Draw Light						*/
-	//Draw the light 1
-	glUniform1i(renderStyle_loc, 4);
-	glPointSize(12.0);
-	glBegin(GL_POINTS);
-	glVertex3f(light_position[0], light_position[1], light_position[2]);
-	glEnd();
-
-	//Draw the light 2
-	glUniform1i(renderStyle_loc, 4);
-	glPointSize(12.0);
-	glBegin(GL_POINTS);
-	glVertex3f(light2_position[0], light2_position[1], light2_position[2]);
-	glEnd();
-
-	//Draw the light 3
-	glUniform1i(renderStyle_loc, 4);
-	glPointSize(12.0);
-	glBegin(GL_POINTS);
-	glVertex3f(light3_position[0], light3_position[1], light3_position[2]);
-	glEnd();
-
-	//Draw the light 4
-	glUniform1i(renderStyle_loc, 4);
-	glPointSize(12.0);
-	glBegin(GL_POINTS);
-	glVertex3f(light4_position[0], light4_position[1], light4_position[2]);
-	glEnd();
+	//FBO
+	fbo(view_matrix);
 
 	glFlush();
 }
@@ -320,10 +269,13 @@ void init()
 	view_matrix_loc = glGetUniformLocation(shaderprogram1, "myview_matrix");
 	normal_matrix_loc = glGetUniformLocation(shaderprogram1, "mynormal_matrix");
 
-	mylight_position_loc = glGetUniformLocation(shaderprogram1, "mylight_position");
 	mylight_color_loc = glGetUniformLocation(shaderprogram1, "mylight_color");
 	mylight_direction_loc = glGetUniformLocation(shaderprogram1, "mylight_direction");
-	mylight_type_loc = glGetUniformLocation(shaderprogram1, "mylight_type");
+
+	mylight1_position_loc = glGetUniformLocation(shaderprogram1, "mylight1_position");
+	mylight2_position_loc = glGetUniformLocation(shaderprogram1, "mylight2_position");
+	mylight3_position_loc = glGetUniformLocation(shaderprogram1, "mylight3_position");
+	mylight4_position_loc = glGetUniformLocation(shaderprogram1, "mylight4_position");
 
 	/// 4 murs autours
 	myObject3D* obj0 = new myObject3D();
@@ -333,8 +285,6 @@ void init()
 	obj0->computePlaneTextureCoordinates();
 	obj0->computeTangents();
 	obj0->createObjectBuffers();
-	//obj0->texture.readTexture("murs.ppm");
-	//obj0->bump.readTexture("wall-normal.ppm");
 	obj0->mirror.createReflection(&fboId, Glut_w, Glut_h);
 	obj0->rotate(0, 1, 0, 90);
 	obj0->translate(-25, 10, 15);
