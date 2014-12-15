@@ -87,7 +87,7 @@ public:
 		}
 	}
 
-	void computeNormal(int v1, int v2, int v3, float & x, float & y, float & z) //v1,v2,v3 : indice in vertices[]    x,y,z : normal vector
+	void computeNormal(int v1, int v2, int v3, float & x, float & y, float & z) 
 	{
 		myVector3D vector1(vertices[v1*3], vertices[v1*3+1], vertices[v1*3+2]);
 		myVector3D vector2(vertices[v2*3], vertices[v2*3+1], vertices[v2*3+2]);
@@ -109,7 +109,6 @@ public:
 		for (i = 0; i < vertices.size(); i++){
 			normals.push_back(0);
 		}
-		//normals.resize(vertices.size());
 
 		for (i = 0; i < indices.size(); i+=3){
 			computeNormal(indices[i], indices[i + 1], indices[i + 2], x, y, z);
@@ -149,9 +148,6 @@ public:
 
 			if (y >= 0.0f)     textures[2 * i + 1] = atan2(y, x) / (PI);
 			else if (y<0.0f)  textures[2 * i + 1] = (-atan2(y, x)) / (PI);
-			//this has problems at the seam, when 1->0 and so interpoltion results in the whole image squeezed between the two border vertices.
-			//if ( y>=0.0f )     textures[2*i+1] = atan2(  y,  x ) / (2*PI) ;
-			//else if ( y<0.0f )  textures[2*i+1] = (2*PI + atan2(  y,  x )) / (2*PI) ;
 		}
 	}
 
@@ -270,7 +266,6 @@ public:
 		glm::mat4 tmp = glm::translate(glm::vec3(x, y, z));
 		model_matrix = tmp * model_matrix;
 
-		// Seems Good
 		xmin += x; xmax += x;
 		ymin += y; ymax += y;
 		zmin += z; zmax += z;
@@ -280,7 +275,6 @@ public:
 		glm::mat4 tmp = glm::rotate((float)angle, glm::vec3(axis_x, axis_y, axis_z));
 		model_matrix = tmp * model_matrix;
 
-		// Let's go for a dirty code : If you try to copy or understand the following code, good luck !
 		vector<myVector3D> listPoint;
 
 		// 8 points 
@@ -352,7 +346,6 @@ public:
 		glm::mat4 tmp = glm::scale(glm::vec3(x, y, z));
 		model_matrix = tmp * model_matrix;
 
-		// Good
 		xmin = (xmax + xmin) / 2 - (xmax - xmin) / 2 * x; xmax = (xmax + xmin) / 2 + (xmax - xmin) / 2 * x;
 		ymin = (ymax + ymin) / 2 - (ymax - ymin) / 2 * y; ymax = (ymax + ymin) / 2 + (ymax - ymin) / 2 * y;
 		zmin = (zmax + zmin) / 2 - (zmax - zmin) / 2 * z; zmax = (zmax + zmin) / 2 + (zmax - zmin) / 2 * z;
@@ -408,5 +401,16 @@ public:
 			float l = sqrt(tangents[3 * i] * tangents[3 * i] + tangents[3 * i + 1] * tangents[3 * i + 1] + tangents[3 * i + 2] * tangents[3 * i + 2]);
 			tangents[3 * i] /= l; tangents[3 * i + 1] /= l; tangents[3 * i + 2] /= l;
 		}
+	}
+
+	void displayNormal()
+	{
+		glBegin(GL_LINES);
+		for (int i = 0; i<vertices.size(); i += 3)
+		{
+			glVertex3f(vertices[i], vertices[i + 1], vertices[i + 2]);
+			glVertex3f(vertices[i] + normals[i] / 10.0, vertices[i + 1] + normals[i + 1] / 10.0, vertices[i + 2] + normals[i + 2] / 10.0);
+		}
+		glEnd();
 	}
 };

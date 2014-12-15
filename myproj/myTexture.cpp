@@ -88,7 +88,6 @@ void myTexture::readCubeMapping(){
 		sprintf(filename, "%d.ppm", i+1);
 		cubeFace = readImage(filename);
 
-		cout << width << "  " << height << endl;
 		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, 128, 128, 0, GL_RGBA, GL_UNSIGNED_BYTE, cubeFace);
 	}
 }

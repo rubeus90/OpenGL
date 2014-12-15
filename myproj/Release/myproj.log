@@ -1,19 +1,86 @@
-﻿Build started 9/12/2014 6:41:21 PM.
-     1>Project "C:\Users\nabil\Dropbox\ESIEE - IN5I11\TP1\startingcode\myproj\myproj.vcxproj" on node 2 (build target(s)).
-     1>InitializeBuildStatus:
-         Creating "Release\myproj.unsuccessfulbuild" because "AlwaysCreate" was specified.
-       ClCompile:
-         All outputs are up-to-date.
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Release\myproj.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+﻿Build started 15/12/2014 21:12:02.
+     1>Project "C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\myproj\myproj.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Release\myproj.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\myproj.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp myproj.cpp myTexture.cpp point3d.cpp shaders.cpp vector3d.cpp
          main.cpp
-     1>main.cpp(27): warning C4305: 'initializing' : truncation from 'double' to 'float'
-     1>main.cpp(222): warning C4305: 'argument' : truncation from 'double' to 'GLclampf'
-     1>main.cpp(222): warning C4305: 'argument' : truncation from 'double' to 'GLclampf'
-     1>main.cpp(222): warning C4305: 'argument' : truncation from 'double' to 'GLclampf'
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(75): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(76): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(77): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(78): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(79): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(80): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(82): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(83): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(85): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(86): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(99): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(100): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(101): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(109): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(113): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(129): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(133): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(134): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(135): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(147): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(149): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(150): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(162): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(163): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(164): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(257): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(260): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(269): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(270): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(271): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(298): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(309): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(310): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(311): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(312): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(313): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(314): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(319): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(322): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(326): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(329): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(333): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(336): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(342): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(349): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(350): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(351): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(381): warning C4101: 'k' : unreferenced local variable
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(409): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\hongngoc\documents\esiee\e5\opengl\myproj\myObject3D.h(412): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>main.cpp(30): warning C4305: 'initializing' : truncation from 'double' to 'float'
+     1>main.cpp(143): warning C4018: '<' : signed/unsigned mismatch
+     1>main.cpp(185): warning C4018: '<' : signed/unsigned mismatch
+     1>main.cpp(537): warning C4305: 'argument' : truncation from 'double' to 'GLclampf'
          GLM: perspective function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+         GLM: rotate function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+         myproj.cpp
+         myTexture.cpp
+     1>myTexture.cpp(14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+     1>myTexture.cpp(33): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(304) : see declaration of 'sscanf'
+     1>myTexture.cpp(38): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(304) : see declaration of 'sscanf'
+     1>myTexture.cpp(88): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : see declaration of 'sprintf'
+     1>myTexture.cpp(72): warning C4101: 'cubemap_texture' : unreferenced local variable
+         point3d.cpp
+         shaders.cpp
+     1>shaders.cpp(64): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+         vector3d.cpp
        Link:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\nabil\Dropbox\ESIEE - IN5I11\TP1\startingcode\Release\myproj.exe" /INCREMENTAL:NO /NOLOGO freeglut.lib glu32.lib opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\myproj.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\nabil\Dropbox\ESIEE - IN5I11\TP1\startingcode\Release\myproj.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\nabil\Dropbox\ESIEE - IN5I11\TP1\startingcode\Release\myproj.lib" /MACHINE:X86 Release\main.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\Release\myproj.exe" /INCREMENTAL:NO /NOLOGO freeglut.lib glu32.lib opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\Release\myproj.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\Release\myproj.lib" /MACHINE:X86 /SAFESEH Release\main.obj
          Release\myproj.obj
+         Release\myTexture.obj
          Release\point3d.obj
          Release\shaders.obj
          Release\stdafx.obj
@@ -21,14 +88,9 @@
      1>LINK : warning LNK4067: ambiguous entry point; selected 'mainCRTStartup'
          Generating code
          Finished generating code
-         myproj.vcxproj -> C:\Users\nabil\Dropbox\ESIEE - IN5I11\TP1\startingcode\Release\myproj.exe
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\nabil\Dropbox\ESIEE - IN5I11\TP1\startingcode\Release\myproj.exe;#1" /manifest Release\myproj.exe.intermediate.manifest
-       FinalizeBuildStatus:
-         Deleting file "Release\myproj.unsuccessfulbuild".
-         Touching "Release\myproj.lastbuildstate".
-     1>Done Building Project "C:\Users\nabil\Dropbox\ESIEE - IN5I11\TP1\startingcode\myproj\myproj.vcxproj" (build target(s)).
+         myproj.vcxproj -> C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\Release\myproj.exe
+     1>Done Building Project "C:\Users\HongNgoc\Documents\ESIEE\E5\OpenGL\myproj\myproj.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.78
+Time Elapsed 00:00:04.91

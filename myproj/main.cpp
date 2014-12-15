@@ -126,7 +126,6 @@ void keyboard(unsigned char key, int x, int y) {
 		glUniform1i(renderStyle_loc, renderStyle);
 		break;
 	case 'r':
-		//camera_eye = myPoint3D(0, 10, 15);
 		camera_up = myVector3D(0, 1, 0);
 		camera_forward = myVector3D(0, -1, -1);
 		break;
@@ -184,9 +183,8 @@ void reshape(int width, int height){
 void drawObjects(glm::mat4 view_matrix){
 	glUniform1i(renderStyle_loc, 2);
 	for (int i = 0; i < listObjects.size(); i++){
-		if (i != 7){
-			listObjects[i].displayObject(shaderprogram1, view_matrix);
-		}	
+		listObjects[i].displayObject(shaderprogram1, view_matrix);
+
 	}
 }
 
@@ -202,9 +200,6 @@ void fbo(glm::mat4 view_matrix){
 //This function is called to display objects on screen.
 void display() 
 {
-	//For display the light
-	//glUniform1i(renderStyle_loc, 0);
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glViewport(0, 0, Glut_w, Glut_h);
@@ -246,7 +241,7 @@ void display()
 	glUniform4fv(mylight_color_loc, 1, &light_color[0]);
 
 	// Light Direction
-	glm::vec3 light_direction = glm::vec3(-2, -1, -1);
+	glm::vec3 light_direction = glm::vec3(0, 0, -1);
 	glUniform3fv(mylight_direction_loc, 1, &light_direction[0]);
 	
 	//FBO
@@ -280,63 +275,67 @@ void init()
 	/// 4 murs autours
 	myObject3D* obj0 = new myObject3D();
 	obj0->readMesh("sol.obj");
-	obj0->scale(3, 2, 1);
 	obj0->computeNormals();
 	obj0->computePlaneTextureCoordinates();
 	obj0->computeTangents();
 	obj0->createObjectBuffers();
 	obj0->mirror.createReflection(&fboId, Glut_w, Glut_h);
+	obj0->scale(3, 2, 1);
 	obj0->rotate(0, 1, 0, 90);
 	obj0->translate(-25, 10, 15);
 	listObjects.push_back(*obj0);
 
 	myObject3D* obj1 = new myObject3D();
-	obj1->readMesh("sol.obj");
-	obj1->scale(5, 2, 1);
+	obj1->readMesh("plane.obj");
 	obj1->computeNormals();
 	obj1->computePlaneTextureCoordinates();
 	obj1->computeTangents();
 	obj1->createObjectBuffers();
 	obj1->texture.readTexture("murs.ppm");
 	obj1->bump.readTexture("wall-normal.ppm");
+	obj1->scale(50, 30, 20);
+	obj1->rotate(1, 0, 0, 90);
 	obj1->translate(25, 10, -15);
 	listObjects.push_back(*obj1);
 
 	myObject3D* obj2 = new myObject3D();
-	obj2->readMesh("sol.obj");
-	obj2->scale(5, 2, 1);
+	obj2->readMesh("plane.obj");
 	obj2->computeNormals();
 	obj2->computePlaneTextureCoordinates();
 	obj2->computeTangents();
 	obj2->createObjectBuffers();
 	obj2->texture.readTexture("murs.ppm");
 	obj2->bump.readTexture("wall-normal.ppm");
+	obj2->scale(50, 30, 20);
+	obj2->rotate(1, 0, 0, 90);
 	obj2->translate(25, 10, 45);
 	listObjects.push_back(*obj2);
 
 	myObject3D* obj3 = new myObject3D();
-	obj3->readMesh("sol.obj");
-	obj3->scale(3, 2, 1);
+	obj3->readMesh("plane.obj");
 	obj3->computeNormals();
 	obj3->computePlaneTextureCoordinates();
 	obj3->computeTangents();
 	obj3->createObjectBuffers();
 	obj3->texture.readTexture("murs.ppm");
 	obj3->bump.readTexture("wall-normal.ppm");
+	obj3->scale(30, 20, 20);
+	obj3->rotate(1, 0, 0, 90);
 	obj3->rotate(0, 1, 0, 90);
 	obj3->translate(75, 10, 15);
 	listObjects.push_back(*obj3);
 
 	// Murs séparateur
 	myObject3D* obj4 = new myObject3D();
-	obj4->readMesh("sol.obj");
-	obj4->scale(2, 2, 1);
+	obj4->readMesh("plane.obj");
 	obj4->computeNormals();
 	obj4->computePlaneTextureCoordinates();
 	obj4->computeTangents();
 	obj4->createObjectBuffers();
 	obj4->texture.readTexture("murs.ppm");
 	obj4->bump.readTexture("wall-normal.ppm");
+	obj4->scale(20, 20, 20);
+	obj4->rotate(1, 0, 0, 90);
 	obj4->rotate(0, 1, 0, 90);
 	obj4->translate(25, 10, 5);
 	listObjects.push_back(*obj4);
@@ -352,21 +351,21 @@ void init()
 	obj5->bump.readTexture("br-normal.ppm");
 	obj5->scale(2.5, 3, 1);
 	obj5->rotate(1, 0, 0, 90);
-	obj5->translate(0, 0, 15); //(y,z,x)
+	obj5->translate(0, 0, 15);
 	listObjects.push_back(*obj5);
 
 	// Sol salon
 	myObject3D* obj6 = new myObject3D();
 	obj6->readMesh("sol.obj");
-	obj6->scale(2.5, 3, 1);
 	obj6->computeNormals();
 	obj6->computePlaneTextureCoordinates();
 	obj6->computeTangents();
 	obj6->createObjectBuffers();
 	obj6->texture.readTexture("table.ppm");
 	obj6->bump.readTexture("br-normal.ppm");
+	obj6->scale(2.5, 3, 1);
 	obj6->rotate(1, 0, 0, 90);
-	obj6->translate(50, 0, 15); //(x,z,y)
+	obj6->translate(50, 0, 15);
 	listObjects.push_back(*obj6);
 
 	// TOIT
@@ -429,7 +428,6 @@ void init()
 	obj11->computeTangents();
 	obj11->createObjectBuffers();
 	obj11->texture.readTexture("can.ppm");
-	//obj11->bump.readTexture("can-normal.ppm");
 	obj11->translate(32, 0, 0);
 	listObjects.push_back(*obj11);
 
@@ -465,7 +463,6 @@ void init()
 	obj14->computeTangents();
 	obj14->createObjectBuffers();
 	obj14->texture.readTexture("bed.ppm");
-	//obj14->bump.readTexture("br-normal.ppm");
 	listObjects.push_back(*obj14);
 
 	// Commode 2
